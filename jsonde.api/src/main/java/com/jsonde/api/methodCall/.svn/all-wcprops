@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/jsonde/!svn/ver/27/jsonde.api/src/main/java/com/jsonde/api/methodCall
+END
+RegisterClassMessage.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/jsonde/!svn/ver/1/jsonde.api/src/main/java/com/jsonde/api/methodCall/RegisterClassMessage.java
+END
+MethodCallMessage.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/jsonde/!svn/ver/27/jsonde.api/src/main/java/com/jsonde/api/methodCall/MethodCallMessage.java
+END
+MethodCallSummaryDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/jsonde/!svn/ver/27/jsonde.api/src/main/java/com/jsonde/api/methodCall/MethodCallSummaryDto.java
+END
+MethodCallDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/jsonde/!svn/ver/20/jsonde.api/src/main/java/com/jsonde/api/methodCall/MethodCallDto.java
+END
+RegisterMethodMessage.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/jsonde/!svn/ver/1/jsonde.api/src/main/java/com/jsonde/api/methodCall/RegisterMethodMessage.java
+END
+DescribeClassMessage.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/jsonde/!svn/ver/1/jsonde.api/src/main/java/com/jsonde/api/methodCall/DescribeClassMessage.java
+END
+MethodCallDtoFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/jsonde/!svn/ver/19/jsonde.api/src/main/java/com/jsonde/api/methodCall/MethodCallDtoFactory.java
+END

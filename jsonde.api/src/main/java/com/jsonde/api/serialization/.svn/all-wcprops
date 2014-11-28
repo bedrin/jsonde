@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/jsonde/!svn/ver/27/jsonde.api/src/main/java/com/jsonde/api/serialization
+END
+PoolableObjectInput.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/jsonde/!svn/ver/27/jsonde.api/src/main/java/com/jsonde/api/serialization/PoolableObjectInput.java
+END
+PoolableObjectOutput.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/jsonde/!svn/ver/27/jsonde.api/src/main/java/com/jsonde/api/serialization/PoolableObjectOutput.java
+END
+PoolableExternalizable.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/jsonde/!svn/ver/8/jsonde.api/src/main/java/com/jsonde/api/serialization/PoolableExternalizable.java
+END
+ObjectInputDecorator.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/jsonde/!svn/ver/8/jsonde.api/src/main/java/com/jsonde/api/serialization/ObjectInputDecorator.java
+END
+ObjectOutputDecorator.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/jsonde/!svn/ver/27/jsonde.api/src/main/java/com/jsonde/api/serialization/ObjectOutputDecorator.java
+END

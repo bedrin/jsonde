@@ -1,0 +1,89 @@
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/jsonde/!svn/ver/34/jsonde.client/src/main/java/com/jsonde/client/dao
+END
+CodeSourceDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/jsonde/!svn/ver/1/jsonde.client/src/main/java/com/jsonde/client/dao/CodeSourceDao.java
+END
+ReportDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/jsonde/!svn/ver/21/jsonde.client/src/main/java/com/jsonde/client/dao/ReportDao.java
+END
+MethodCallDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/jsonde/!svn/ver/27/jsonde.client/src/main/java/com/jsonde/client/dao/MethodCallDao.java
+END
+DaoException.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/jsonde/!svn/ver/1/jsonde.client/src/main/java/com/jsonde/client/dao/DaoException.java
+END
+Dao.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/jsonde/!svn/ver/1/jsonde.client/src/main/java/com/jsonde/client/dao/Dao.java
+END
+TopMethodCallDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/jsonde/!svn/ver/27/jsonde.client/src/main/java/com/jsonde/client/dao/TopMethodCallDao.java
+END
+AbstractEntityDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/jsonde/!svn/ver/27/jsonde.client/src/main/java/com/jsonde/client/dao/AbstractEntityDao.java
+END
+MethodDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/jsonde/!svn/ver/1/jsonde.client/src/main/java/com/jsonde/client/dao/MethodDao.java
+END
+AbstractDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 90
+/svn/jsonde/!svn/ver/16/jsonde.client/src/main/java/com/jsonde/client/dao/AbstractDao.java
+END
+ClazzDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/jsonde/!svn/ver/27/jsonde.client/src/main/java/com/jsonde/client/dao/ClazzDao.java
+END
+TelemetryDataDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/jsonde/!svn/ver/27/jsonde.client/src/main/java/com/jsonde/client/dao/TelemetryDataDao.java
+END
+DaoFactory.java
+K 25
+svn:wc:ra_dav:version-url
+V 89
+/svn/jsonde/!svn/ver/28/jsonde.client/src/main/java/com/jsonde/client/dao/DaoFactory.java
+END
+ClazzLoaderDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/jsonde/!svn/ver/1/jsonde.client/src/main/java/com/jsonde/client/dao/ClazzLoaderDao.java
+END
+MethodCallSummaryDao.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/jsonde/!svn/ver/34/jsonde.client/src/main/java/com/jsonde/client/dao/MethodCallSummaryDao.java
+END

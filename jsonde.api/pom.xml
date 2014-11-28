@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <relativePath>..</relativePath>
+        <groupId>com.jsonde</groupId>
+        <artifactId>jsonde</artifactId>
+        <version>1.0.0.beta7</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.jsonde</groupId>
+    <artifactId>jsonde.api</artifactId>
+    <name>jSonde API</name>
+    <packaging>jar</packaging>
+    <version>1.0.0.beta7</version>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.jsonde</groupId>
+            <artifactId>jsonde.util</artifactId>
+            <version>1.0.0.beta7</version>
+        </dependency>
+    </dependencies>
+
+</project>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <parent>
+        <relativePath>..</relativePath>
+        <groupId>com.jsonde</groupId>
+        <artifactId>jsonde</artifactId>
+        <version>1.0.0.beta7</version>
+    </parent>
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.jsonde</groupId>
+    <artifactId>jsonde.installer</artifactId>
+    <name>jSonde Installer</name>
+    <packaging>pom</packaging>
+    <version>1.0.0.beta7</version>
+
+    <build>
+        <plugins>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-dependency-plugin</artifactId>
+                <configuration>
+                    <outputDirectory>target/jsonde-installer</outputDirectory>
+                    <artifactItems>
+                        <artifactItem>
+                            <groupId>com.jsonde</groupId>
+                            <artifactId>jsonde.deployment</artifactId>
+                            <type>tar.gz</type>
+                            <classifier>binaries</classifier>
+                            <version>1.0.0.beta7</version>
+                        </artifactItem>
+                    </artifactItems>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>extract-deployment-archive</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>unpack</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <id>installer</id>
+                        <phase>install</phase>
+                        <configuration>
+                            <tasks>
+
+                                <mkdir dir="target/jsonde-installer/project"/>
+
+                                <move todir="target/jsonde-installer/project">
+                                    <fileset dir="target/jsonde-installer/jsonde-1.0.0.beta7"/>
+                                </move>
+
+                                <copy todir="target/jsonde-installer">
+                                    <fileset dir="src/main/installer"/>
+                                    <fileset dir="src/main/icons"/>
+                                </copy>
+
+                                <taskdef
+                                        name="izpack"
+                                        classname="com.izforge.izpack.ant.IzPackTask"
+                                        classpathref="maven.compile.classpath"/>
+
+                                <izpack
+                                        input="${basedir}/target/jsonde-installer/install.xml"
+                                        output="${basedir}/target/jsonde-1.0.0.beta7-installer.jar"
+                                        basedir="${basedir}/target/jsonde-installer"
+                                        installerType="standard"
+                                        inheritAll="true"
+                                        />
+
+                                <taskdef
+                                        name="jsmoothgen"
+                                        classname="net.charabia.jsmoothgen.ant.JSmoothGen"
+                                        classpathref="maven.compile.classpath"/>
+
+                                <jsmoothgen
+                                        project="src/main/wrapper/jsonde-installer-jsmooth.xml"
+                                        skeletonroot="src/main/wrapper/skeletons"/>
+
+                            </tasks>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.izforge.izpack</groupId>
+            <artifactId>standalone-compiler</artifactId>
+            <version>4.3</version>
+        </dependency>
+        <dependency>
+            <groupId>net.charabia.jsmoothgen</groupId>
+            <artifactId>jsmoothgen-ant</artifactId>
+            <version>0.9.9-7</version>
+        </dependency>
+    </dependencies>
+
+</project>

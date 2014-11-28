@@ -1,0 +1,35 @@
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/jsonde/!svn/ver/37/jsonde.util/src/main/java/com/jsonde/util
+END
+CurrentClassGetter.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/jsonde/!svn/ver/1/jsonde.util/src/main/java/com/jsonde/util/CurrentClassGetter.java
+END
+ClassUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/jsonde/!svn/ver/27/jsonde.util/src/main/java/com/jsonde/util/ClassUtils.java
+END
+StringUtils.java
+K 25
+svn:wc:ra_dav:version-url
+V 81
+/svn/jsonde/!svn/ver/1/jsonde.util/src/main/java/com/jsonde/util/StringUtils.java
+END
+ObjectIdGenerator.java
+K 25
+svn:wc:ra_dav:version-url
+V 88
+/svn/jsonde/!svn/ver/27/jsonde.util/src/main/java/com/jsonde/util/ObjectIdGenerator.java
+END
+ObjectIsAbsentException.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/jsonde/!svn/ver/14/jsonde.util/src/main/java/com/jsonde/util/ObjectIsAbsentException.java
+END

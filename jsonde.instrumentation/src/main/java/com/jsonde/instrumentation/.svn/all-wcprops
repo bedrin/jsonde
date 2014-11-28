@@ -1,0 +1,47 @@
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/jsonde/!svn/ver/27/jsonde.instrumentation/src/main/java/com/jsonde/instrumentation
+END
+ByteCodeTransformer.java
+K 25
+svn:wc:ra_dav:version-url
+V 111
+/svn/jsonde/!svn/ver/1/jsonde.instrumentation/src/main/java/com/jsonde/instrumentation/ByteCodeTransformer.java
+END
+JSondeClassLoaderMethodTransformer.java
+K 25
+svn:wc:ra_dav:version-url
+V 126
+/svn/jsonde/!svn/ver/1/jsonde.instrumentation/src/main/java/com/jsonde/instrumentation/JSondeClassLoaderMethodTransformer.java
+END
+JSondeMethodTransformerOld.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/jsonde/!svn/ver/1/jsonde.instrumentation/src/main/java/com/jsonde/instrumentation/JSondeMethodTransformerOld.java
+END
+JSondeMethodTransformer.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/jsonde/!svn/ver/8/jsonde.instrumentation/src/main/java/com/jsonde/instrumentation/JSondeMethodTransformer.java
+END
+ByteCodeTransformException.java
+K 25
+svn:wc:ra_dav:version-url
+V 118
+/svn/jsonde/!svn/ver/1/jsonde.instrumentation/src/main/java/com/jsonde/instrumentation/ByteCodeTransformException.java
+END
+JSondeClassTransformer.java
+K 25
+svn:wc:ra_dav:version-url
+V 115
+/svn/jsonde/!svn/ver/27/jsonde.instrumentation/src/main/java/com/jsonde/instrumentation/JSondeClassTransformer.java
+END
+SkipClassException.java
+K 25
+svn:wc:ra_dav:version-url
+V 110
+/svn/jsonde/!svn/ver/1/jsonde.instrumentation/src/main/java/com/jsonde/instrumentation/SkipClassException.java
+END

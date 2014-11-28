@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/jsonde/!svn/ver/35/jsonde.client/src/main/java/com/jsonde/client/domain
+END
+TopMethodCall.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/jsonde/!svn/ver/1/jsonde.client/src/main/java/com/jsonde/client/domain/TopMethodCall.java
+END
+AbstractMethodCall.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/jsonde/!svn/ver/20/jsonde.client/src/main/java/com/jsonde/client/domain/AbstractMethodCall.java
+END
+Method.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/jsonde/!svn/ver/1/jsonde.client/src/main/java/com/jsonde/client/domain/Method.java
+END
+Clazz.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/jsonde/!svn/ver/1/jsonde.client/src/main/java/com/jsonde/client/domain/Clazz.java
+END
+TelemetryData.java
+K 25
+svn:wc:ra_dav:version-url
+V 95
+/svn/jsonde/!svn/ver/35/jsonde.client/src/main/java/com/jsonde/client/domain/TelemetryData.java
+END
+ClazzLoader.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/jsonde/!svn/ver/1/jsonde.client/src/main/java/com/jsonde/client/domain/ClazzLoader.java
+END
+MethodCallSummary.java
+K 25
+svn:wc:ra_dav:version-url
+V 99
+/svn/jsonde/!svn/ver/20/jsonde.client/src/main/java/com/jsonde/client/domain/MethodCallSummary.java
+END
+CodeSource.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/jsonde/!svn/ver/1/jsonde.client/src/main/java/com/jsonde/client/domain/CodeSource.java
+END
+MethodCall.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/jsonde/!svn/ver/20/jsonde.client/src/main/java/com/jsonde/client/domain/MethodCall.java
+END
+DomainObject.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/jsonde/!svn/ver/20/jsonde.client/src/main/java/com/jsonde/client/domain/DomainObject.java
+END

@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<reports>
+    <report-group id="reports">
+        <report
+                title="Top Methods Throwing Exception"
+                small-icon-url="spreadsheet.png"
+                large-icon-url="spreadsheet_large.png"
+                chart-type="PIE">
+            <sql>
+                select concat(c.name,'.',m.name), mc.throwExceptionCounter
+                from methodcallsummary mc
+                inner join method m on mc.methodid = m.id
+                inner join clazz c on m.classid = c.id
+                where mc.throwExceptionCounter > 0
+                group by c.name, m.name, mc.throwExceptionCounter
+                limit 20
+            </sql>
+        </report>
+        <report
+                title="Top Code Sources By Execution Time"
+                small-icon-url="spreadsheet.png"
+                large-icon-url="spreadsheet_large.png"
+                chart-type="PIE">
+            <sql>
+                select cs.source, sum(mc.executiontime) as executionTime
+                from methodcallsummary mc
+                inner join method m on mc.methodid = m.id
+                inner join clazz c on m.classid = c.id
+                inner join codesource cs on cs.id = c.codesourceid
+                group by c.codesourceid
+                order by executionTime desc
+                limit 20
+            </sql>
+        </report>
+        <report
+                title="Dependencies"
+                small-icon-url="folder.png"
+                large-icon-url="folder_large.png"
+                chart-type="CUSTOM"
+                report-generator="com.jsonde.gui.reports.custom.DependencyReport"/>
+    </report-group>
+
+    <report
+            id="memory-telemetry"
+            title="Memory Telemetry"
+            small-icon-url="swf.png"
+            large-icon-url="swf_large.png"
+            chart-type="TIME"
+            >
+        <sql>
+            select
+            time,
+            freeMemory / 1024 / 1024 as "Free Memory",
+            maxMemory / 1024 / 1024 as "Max Memory",
+            totalMemory / 1024 / 1024 as "Total Memory"
+            from telemetrydata
+        </sql>
+    </report>
+    <report
+            id="class-telemetry"
+            title="Class Telemetry"
+            small-icon-url="swf.png"
+            large-icon-url="swf_large.png"
+            chart-type="TIME"
+            >
+        <sql>
+            select
+            time,
+            loadedClassCount as "Loaded Class Count",
+            classCount as "Class Count",
+            unloadedClassCount as "Unloaded Class Count"
+            from telemetrydata
+        </sql>
+    </report>
+
+</reports>

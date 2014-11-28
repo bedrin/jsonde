@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/jsonde/!svn/ver/44/jsonde.gui/src/main/java/com/jsonde/gui/action
+END
+OpenMemoryHeapViewAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 100
+/svn/jsonde/!svn/ver/37/jsonde.gui/src/main/java/com/jsonde/gui/action/OpenMemoryHeapViewAction.java
+END
+CloseAllDiagramsAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/jsonde/!svn/ver/27/jsonde.gui/src/main/java/com/jsonde/gui/action/CloseAllDiagramsAction.java
+END
+ListSelectionListenerAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 102
+/svn/jsonde/!svn/ver/1/jsonde.gui/src/main/java/com/jsonde/gui/action/ListSelectionListenerAction.java
+END
+HelpAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 86
+/svn/jsonde/!svn/ver/27/jsonde.gui/src/main/java/com/jsonde/gui/action/HelpAction.java
+END
+OpenProjectAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 93
+/svn/jsonde/!svn/ver/12/jsonde.gui/src/main/java/com/jsonde/gui/action/OpenProjectAction.java
+END
+AboutAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 87
+/svn/jsonde/!svn/ver/44/jsonde.gui/src/main/java/com/jsonde/gui/action/AboutAction.java
+END
+CloseDiagramAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 94
+/svn/jsonde/!svn/ver/27/jsonde.gui/src/main/java/com/jsonde/gui/action/CloseDiagramAction.java
+END
+ExitJSondeAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 91
+/svn/jsonde/!svn/ver/1/jsonde.gui/src/main/java/com/jsonde/gui/action/ExitJSondeAction.java
+END
+OpenMethodCallProfilerViewAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 108
+/svn/jsonde/!svn/ver/30/jsonde.gui/src/main/java/com/jsonde/gui/action/OpenMethodCallProfilerViewAction.java
+END
+NewLocalSunJVMProjectAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/jsonde/!svn/ver/44/jsonde.gui/src/main/java/com/jsonde/gui/action/NewLocalSunJVMProjectAction.java
+END
+NewProjectAction.java
+K 25
+svn:wc:ra_dav:version-url
+V 92
+/svn/jsonde/!svn/ver/10/jsonde.gui/src/main/java/com/jsonde/gui/action/NewProjectAction.java
+END

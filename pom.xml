@@ -1,0 +1,70 @@
+<?xml version="1.0"?><project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.jsonde</groupId>
+    <artifactId>jsonde</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0.0.beta7</version>
+    <name>jSonde Product</name>
+
+    <properties>
+        <asm.version>3.2</asm.version>
+    </properties>
+
+    <modules>
+        <module>jsonde.util</module>
+        <module>jsonde.api</module>
+        <module>jsonde.profiler</module>
+        <module>jsonde.instrumentation</module>
+        <module>jsonde.agent</module>
+        <module>jsonde.client</module>
+        <module>jsonde.test</module>
+        <module>jsonde.gui</module>
+        <module>jsonde.deployment</module>
+        <module>jsonde.installer</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.6</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jmock</groupId>
+            <artifactId>jmock-junit4</artifactId>
+            <version>2.5.1</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.5</source>
+                    <target>1.5</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+    <repositories>
+        <repository>
+            <id>maven.org</id>
+            <name>Maven repository</name>
+            <url>http://repo1.maven.org/maven2/</url>
+        </repository>
+        <repository>
+            <id>jsonde-local-repository</id>
+            <name>jsonde-local-repository</name>
+            <url>file:./repository</url>
+        </repository>
+    </repositories>
+
+</project>

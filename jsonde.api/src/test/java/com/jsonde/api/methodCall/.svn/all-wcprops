@@ -1,0 +1,17 @@
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/jsonde/!svn/ver/27/jsonde.api/src/test/java/com/jsonde/api/methodCall
+END
+MethodCallMessageTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 101
+/svn/jsonde/!svn/ver/27/jsonde.api/src/test/java/com/jsonde/api/methodCall/MethodCallMessageTest.java
+END
+MethodCallDtoFactoryTest.java
+K 25
+svn:wc:ra_dav:version-url
+V 103
+/svn/jsonde/!svn/ver/7/jsonde.api/src/test/java/com/jsonde/api/methodCall/MethodCallDtoFactoryTest.java
+END

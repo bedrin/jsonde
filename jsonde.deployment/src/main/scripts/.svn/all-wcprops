@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/jsonde/!svn/ver/32/jsonde.deployment/src/main/scripts
+END
+jsonde.cmd
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/jsonde/!svn/ver/32/jsonde.deployment/src/main/scripts/jsonde.cmd
+END
+jsonde.bat
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/jsonde/!svn/ver/32/jsonde.deployment/src/main/scripts/jsonde.bat
+END
+jsonde.sh
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/jsonde/!svn/ver/22/jsonde.deployment/src/main/scripts/jsonde.sh
+END

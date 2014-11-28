@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/jsonde/!svn/ver/1/jsonde.api/src/main/java/com/jsonde/api/function/heap
+END
+DumpHeapFunctionRequest.java
+K 25
+svn:wc:ra_dav:version-url
+V 105
+/svn/jsonde/!svn/ver/1/jsonde.api/src/main/java/com/jsonde/api/function/heap/DumpHeapFunctionRequest.java
+END
+ClassHeapDataDto.java
+K 25
+svn:wc:ra_dav:version-url
+V 98
+/svn/jsonde/!svn/ver/1/jsonde.api/src/main/java/com/jsonde/api/function/heap/ClassHeapDataDto.java
+END
+DumpHeapFunctionResponse.java
+K 25
+svn:wc:ra_dav:version-url
+V 106
+/svn/jsonde/!svn/ver/1/jsonde.api/src/main/java/com/jsonde/api/function/heap/DumpHeapFunctionResponse.java
+END

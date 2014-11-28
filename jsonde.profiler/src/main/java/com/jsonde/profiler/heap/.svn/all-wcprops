@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/jsonde/!svn/ver/27/jsonde.profiler/src/main/java/com/jsonde/profiler/heap
+END
+HeapAnalyzerReference.java
+K 25
+svn:wc:ra_dav:version-url
+V 104
+/svn/jsonde/!svn/ver/1/jsonde.profiler/src/main/java/com/jsonde/profiler/heap/HeapAnalyzerReference.java
+END
+HeapAnalyzer.java
+K 25
+svn:wc:ra_dav:version-url
+V 96
+/svn/jsonde/!svn/ver/27/jsonde.profiler/src/main/java/com/jsonde/profiler/heap/HeapAnalyzer.java
+END
+ClassHeapData.java
+K 25
+svn:wc:ra_dav:version-url
+V 97
+/svn/jsonde/!svn/ver/27/jsonde.profiler/src/main/java/com/jsonde/profiler/heap/ClassHeapData.java
+END
