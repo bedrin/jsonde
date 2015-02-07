@@ -4,9 +4,7 @@ import com.jsonde.util.ClassUtils;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.util.ASMifierClassVisitor;
 
-import java.io.PrintWriter;
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;
 import java.security.ProtectionDomain;
@@ -60,7 +58,7 @@ public class ByteCodeTransformer implements ClassFileTransformer {
 
             ClassReader classReader = new ClassReader(originalBytes, offset, length);
 
-            ClassWriter classWriter = new ClassWriter(classReader, ClassWriter.COMPUTE_MAXS);
+            ClassWriter classWriter = new ClassWriter(classReader, ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
 
             ClassVisitor classVisitor;
             classVisitor = new JSondeClassTransformer(classWriter, instrumentClass, classLoader, classBeingRedefined);
@@ -78,21 +76,6 @@ public class ByteCodeTransformer implements ClassFileTransformer {
             e.printStackTrace();
             return originalBytes;
             //throw new ByteCodeTransformException(e); // todo fix
-        }
-
-    }
-
-    @Deprecated
-    private static void dumpBytes(byte[] bytes) {
-
-        try {
-            ClassReader classReader = new ClassReader(bytes);
-
-            ClassVisitor classVisitor = new ASMifierClassVisitor(new PrintWriter(System.out));
-
-            classReader.accept(classVisitor, 0);
-        } catch (Exception e) {
-            e.printStackTrace();
         }
 
     }

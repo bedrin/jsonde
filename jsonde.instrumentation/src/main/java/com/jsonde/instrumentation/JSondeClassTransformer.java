@@ -2,12 +2,11 @@ package com.jsonde.instrumentation;
 
 import com.jsonde.profiler.Profiler;
 import com.jsonde.util.ClassUtils;
-import org.objectweb.asm.ClassAdapter;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 
-public class JSondeClassTransformer extends ClassAdapter {
+public class JSondeClassTransformer extends ClassVisitor {
 
     private String className;
     private String parentClassName;
@@ -19,7 +18,7 @@ public class JSondeClassTransformer extends ClassAdapter {
     private long classId;
 
     public JSondeClassTransformer(ClassVisitor classVisitor, boolean instrumentClass, ClassLoader classLoader, Class<?> classBeingRedefined) {
-        super(classVisitor);
+        super(Opcodes.ASM4, classVisitor);
         this.instrumentClass = instrumentClass;
         this.classLoader = classLoader;
         this.classBeingRedefined = classBeingRedefined;

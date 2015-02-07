@@ -1,14 +1,13 @@
 package com.jsonde.instrumentation;
 
 import org.objectweb.asm.Label;
-import org.objectweb.asm.MethodAdapter;
 import org.objectweb.asm.MethodVisitor;
 import org.objectweb.asm.Opcodes;
 
-public class JSondeClassLoaderMethodTransformer extends MethodAdapter implements Opcodes {
+public class JSondeClassLoaderMethodTransformer extends MethodVisitor implements Opcodes {
 
     public JSondeClassLoaderMethodTransformer(MethodVisitor methodVisitor) {
-        super(methodVisitor);
+        super(ASM4, methodVisitor);
     }
 
     @Override

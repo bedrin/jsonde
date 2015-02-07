@@ -4,6 +4,7 @@ import com.jsonde.profiler.Profiler;
 import com.jsonde.util.ClassUtils;
 import org.objectweb.asm.Label;
 import org.objectweb.asm.MethodVisitor;
+import org.objectweb.asm.Opcodes;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.commons.AdviceAdapter;
 
@@ -21,7 +22,7 @@ public class JSondeMethodTransformer extends AdviceAdapter {
             ClassUtils.getInternalClassName(Profiler.CLASS_CANONICAL_NAME);
 
     public JSondeMethodTransformer(long methodId, MethodVisitor mv, int access, String name, String desc, String className, String parentClassName) {
-        super(mv, access, name, desc);
+        super(Opcodes.ASM4, mv, access, name, desc);
         this.methodId = methodId;
         this.isConstructor = name.equals(ClassUtils.CONSTRUCTOR_METHOD_NAME);
         this.isStaticConstructor = name.equals(ClassUtils.STATIC_CONSTRUCTOR_METHOD_NAME);
@@ -38,10 +39,10 @@ public class JSondeMethodTransformer extends AdviceAdapter {
     @Override
     public void visitMaxs(int maxStack, int maxLocals) {
         Label endFinallyLabel = new Label();
-        super.visitTryCatchBlock(startFinallyLabel, endFinallyLabel, endFinallyLabel, null);
-        super.visitLabel(endFinallyLabel);
-        onFinally(ATHROW);
-        super.visitInsn(ATHROW);
+        //super.visitTryCatchBlock(startFinallyLabel, endFinallyLabel, endFinallyLabel, null);
+        //super.visitLabel(endFinallyLabel);
+        //onFinally(ATHROW);
+        //super.visitInsn(ATHROW);
         super.visitMaxs(maxStack, maxLocals);
     }
 
