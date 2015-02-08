@@ -6,6 +6,8 @@ jSonde allows you to generate sequence diagrams directly from your application r
  * Easily investigate what's happening in large Java applications
  * Excellent companion for a common debugger
 
+![Sequence Diagram](http://bedrin.github.io/jsonde/sequenceDiagram.png "Sequence Diagram")
+
 Manual
 ============
 # Overview
@@ -112,6 +114,37 @@ Now you need to start jSonde GUI and select "File" \ "New Project" menu item
 After that you'll see a dialog like shown below. It's pretty similar to one, we've described in chapter "Attaching agent dynamically" above. Hence the meaning of the similar fields in these two dialogs is the same
 
 ![New Project](http://bedrin.github.io/jsonde/newProjectDialog.png "New Project")
+
+|Project name|The name of your project. It will be used for creating jSonde project files|
+|Project files location|Specifies a folder for storing jSonde project files. Each project consists of several files with the same name but different extensions|
+|Agent host|The IP address of the computer where jSonde agent is running. Value "127.0.0.1" is fine if you're executing jSonde GUI and jSonde agent on the same computer|
+|Agent port|	TCP port for communicating between jSonde agent and GUI|
+|Filters|Allows you to specify filters for analyze. See chapter below|
+
+## Filtering in jSonde
+jSonde allows you to specify filters in order to analyze only specified list of classes
+
+It will allow you to analyze only your own classes and also improves performance
+
+Let's assume that your classes are all located in package "com.mycompany"
+
+In this case first of all we need to exclude all classes and after that include classes from "com.mycompany" package: Exclude "*"; Include "com.mycompany.*"
+
+Now click on "Connect" button as that's it - you're ready to start working with jSonde
+
+# Using jSonde to analyze applications
+You can use main menu or accordion pane on the left for opening different views: sequence diagrams, reports, profiling and so on
+
+## Viewing sequence diagrams
+Select "Sequence Diagrams" pane and you'll see a tree with classes of your applications. The leaves of this tree are "root" method calls discovered by jSonde agent.
+
+"root" method call is the first method invocation inside the specified classes scope (see section about filters above)
+
+If you double click on the selected method, a new tab with sequence diagram will be opened in the workspace
+
+You can use buttons in toolbar for tuning the diagram view; mouse drag is also supported for scrolling the diagram
+
+![Sequence Diagram](http://bedrin.github.io/jsonde/sequenceDiagram.png "Sequence Diagram")
 
 
 Building
