@@ -52,10 +52,10 @@
                                 <proguard>
                                     -libraryjars ${java.home}/lib/rt.jar
                                     -libraryjars ${java.home}/lib/jce.jar
-                                    -libraryjars target/dependency/asm-3.2.jar
-                                    -libraryjars target/dependency/asm-commons-3.2.jar
-                                    -libraryjars target/dependency/asm-util-3.2.jar
-                                    -libraryjars target/dependency/asm-tree-3.2.jar
+                                    -libraryjars target/dependency/asm-5.0.3.jar
+                                    -libraryjars target/dependency/asm-commons-5.0.3.jar
+                                    -libraryjars target/dependency/asm-util-5.0.3.jar
+                                    -libraryjars target/dependency/asm-tree-5.0.3.jar
                                     -libraryjars target/dependency/h2-1.1.111.jar
                                     -libraryjars target/dependency/sdedit-3.0.5.jar
                                     -libraryjars target/dependency/jfreechart-1.0.13.jar
