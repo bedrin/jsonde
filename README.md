@@ -146,6 +146,42 @@ You can use buttons in toolbar for tuning the diagram view; mouse drag is also s
 
 ![Sequence Diagram](http://bedrin.github.io/jsonde/sequenceDiagram.png "Sequence Diagram")
 
+## Viewing reports
+Select "Reports" pane in order to view the list of available reports. They're also accessible through main menu
+
+### Dependency report
+This report allows you to browse the dependencies of code sources (.jar files for example) inside your project
+
+Sometimes it can be very useful to find missing or redundant dependency
+
+![Dependency Report](http://bedrin.github.io/jsonde/dependencyReport.png "Dependency Report")
+
+### Top Code Sources by Execution Time report
+This report shows the top code sources by execution time.
+
+It allows you to find the most "slow" or rather most "used" method grouped by jar files
+![Top Code Sources](http://bedrin.github.io/jsonde/topCodeSources.png "Top Code Sources")
+
+### Top Methods throwing exception
+This report shows you the top method throwing any exceptions
+
+If a method throws an exception a lot of time, it could be a good idea to review it's interface
+![Top Method Throwing Exception](http://bedrin.github.io/jsonde/topExceptions.png "Top Method Throwing Exception")
+
+## jSonde Profiler
+jSonde supports both cpu and memory profiling, and allows you to find most executed methods, most created objects and so on
+
+Click on "Profiler" in accordion panel on the left, and select appropriate profiling view
+
+### CPU Profiler
+CPU profiler shows you method invocation counters and total execution time of the methods
+
+For convenient browsing, this data is shown as a tree
+![CPU Profiler](http://bedrin.github.io/jsonde/cpuProfiler.png "CPU Profiler")
+
+### Heap analyzer
+Heap analyzer allows you to browse the snapshot of java memory heap and analyze what objects are created most often, what objects consume the largest amount of memory and other values
+![Heap Analyzer](http://bedrin.github.io/jsonde/memoryHeap.png "Heap Analyzer")
 
 Building
 ============
