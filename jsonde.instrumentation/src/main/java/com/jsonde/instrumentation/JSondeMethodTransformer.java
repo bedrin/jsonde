@@ -39,10 +39,10 @@ public class JSondeMethodTransformer extends AdviceAdapter {
     @Override
     public void visitMaxs(int maxStack, int maxLocals) {
         Label endFinallyLabel = new Label();
-        //super.visitTryCatchBlock(startFinallyLabel, endFinallyLabel, endFinallyLabel, null);
-        //super.visitLabel(endFinallyLabel);
-        //onFinally(ATHROW);
-        //super.visitInsn(ATHROW);
+        super.visitTryCatchBlock(startFinallyLabel, endFinallyLabel, endFinallyLabel, null);
+        super.visitLabel(endFinallyLabel);
+        onFinally(ATHROW);
+        super.visitInsn(ATHROW);
         super.visitMaxs(maxStack, maxLocals);
     }
 
