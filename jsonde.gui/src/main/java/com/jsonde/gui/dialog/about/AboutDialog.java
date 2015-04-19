@@ -1,7 +1,7 @@
 package com.jsonde.gui.dialog.about;
 
 import com.jsonde.gui.dialog.JSondeDialog;
-import com.jsonde.util.file.c;
+import com.jsonde.util.file.FileUtils;
 
 import javax.swing.*;
 import java.awt.*;
@@ -27,7 +27,7 @@ public class AboutDialog extends JSondeDialog {
 
         contentPane.add(label, BorderLayout.NORTH);
 
-        StringBuffer stringBuffer = new StringBuffer();
+        StringBuilder stringBuffer = new StringBuilder();
 
         stringBuffer.
                 append("System Properties:").
