@@ -4,11 +4,11 @@
 
     <info>
         <appname>jSonde</appname>
-        <appversion>1.0.0.beta7</appversion>
+        <appversion>1.1.0</appversion>
         <authors>
             <author name="Dmitry Bedrin" email="Dmitry.Bedrin@gmail.com"/>
         </authors>
-        <url>http://www.jsonde.com/</url>
+        <url>https://github.com/bedrin/jsonde</url>
         <javaversion>1.5</javaversion>
     </info>
 

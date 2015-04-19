@@ -1,5 +1,8 @@
 jSonde
 ============
+[![CI Status](https://travis-ci.org/bedrin/jsonde.svg?branch=master)](https://travis-ci.org/bedrin/jsonde)
+[![Coverage Status](https://coveralls.io/repos/bedrin/jsonde/badge.svg?branch=master)](https://coveralls.io/r/bedrin/jsonde?branch=master)
+
 jSonde allows you to generate sequence diagrams directly from your application runtime! This gives you a lot of advantages:
  * Understand the code created by your colleagues/partners in a short time
  * Rapidly generate documentation for your partners or users.
@@ -44,7 +47,7 @@ java -jar app.jar
 
 In order to execute this application with jSonde agent, you need to add new parameters like shown below:
 
-java -javaagent:<path-to-jSonde-folder>/lib/jsonde.agent-1.0.0.beta7.jar=60001-jar app.jar
+java -javaagent:<path-to-jSonde-folder>/lib/jsonde.agent-1.1.0.jar=60001 -jar app.jar
 
 By no means you can use jSonde to analyze not only J2SE applications. You can find a few examples of using jSonde with Tomcat, JBoss and other environments below.
 
@@ -55,11 +58,11 @@ File: %TOMCAT_HOME%\bin\catalina.bat
 
 Add the following line:
 
-set JAVA_OPTS=-javaagent:<path-to-jSonde-folder>/lib/jsonde.agent-1.0.0.beta7.jar=60001 %JAVA_OPTS%
+set JAVA_OPTS=-javaagent:<path-to-jSonde-folder>/lib/jsonde.agent-1.1.0.jar=60001 %JAVA_OPTS%
 
 If you use the windows service or system tray startup use the following parameters instead:
 
--javaagent:<path-to-jSonde-folder>/lib/jsonde.agent-1.0.0.beta7.jar=60001
+-javaagent:<path-to-jSonde-folder>/lib/jsonde.agent-1.1.0.jar=60001
 
 #### GNU/Linux & Mac OS X
 
@@ -67,7 +70,7 @@ File: $TOMCAT_HOME/bin/catalina.sh
 
 Add the following line:
 
-JAVA_OPTS="-javaagent:<path-to-jSonde-folder>/lib/jsonde.agent-1.0.0.beta7.jar=60001 $JAVA_OPTS"
+JAVA_OPTS="-javaagent:<path-to-jSonde-folder>/lib/jsonde.agent-1.1.0.jar=60001 $JAVA_OPTS"
 
 ### JBoss
 #### Microsoft Windows
@@ -76,7 +79,7 @@ File: %JBOSS_HOME%\bin\run.bat
 
 Add the following line:
 
-set JAVA_OPTS=-javaagent:<path-to-jSonde-folder>/lib/jsonde.agent-1.0.0.beta7.jar=60001 %JAVA_OPTS%
+set JAVA_OPTS=-javaagent:<path-to-jSonde-folder>/lib/jsonde.agent-1.1.0.jar=60001 %JAVA_OPTS%
 
 #### GNU/Linux & Mac OS X
 
@@ -84,7 +87,7 @@ File: $JBOSS_HOME/bin/run.sh
 
 Add the following line:
 
-JAVA_OPTS="-javaagent:<path-to-jSonde-folder>/lib/jsonde.agent-1.0.0.beta7.jar=60001 $JAVA_OPTS"
+JAVA_OPTS="-javaagent:<path-to-jSonde-folder>/lib/jsonde.agent-1.1.0.jar=60001 $JAVA_OPTS"
 
 ### Other Application Servers
 Just check your application server configuration for the place, where you should specify jvm parameters
@@ -96,13 +99,13 @@ You can analyze applets running inside a browser with Java Plugin installed.
 
 Please add the following option in "Java(TM) Plug-in Control Panel", on the "Advanced" tab, in the field "Java Runtime Parameters":
 
--javaagent:<path-to-jSonde-folder>/lib/jsonde.agent-1.0.0.beta7.jar=60001
+-javaagent:<path-to-jSonde-folder>/lib/jsonde.agent-1.1.0.jar=60001
 
 On Windows, "Java(TM) Plug-in Control Panel" is accessible from the Windows "Control Panel"
 
 Important: If the browser is running, you must restart it after you have made the changes.
 
-You can also analyze applets started with appletviewer command by passing -J-javaagent:<path-to-jSonde-folder>/lib/jsonde.agent-1.0.0.beta7.jar=60001 as a command line parameter.
+You can also analyze applets started with appletviewer command by passing -J-javaagent:<path-to-jSonde-folder>/lib/jsonde.agent-1.1.0.jar=60001 as a command line parameter.
 
 ## Connecting to jSonde agent specified by command line parameters
 After you've added jSonde agent to java parameters and started your application, you'll se the following message in output:
@@ -185,5 +188,4 @@ Heap analyzer allows you to browse the snapshot of java memory heap and analyze 
 
 Building
 ============
-jSonde is built using JDK6 and Maven 3+ - just checkout the project and type `mvn install`
-JDK6 is required only for building the project - once it's built, you can use jSonde with JRE 1.5+
+jSonde is built using JDK 1.5+ and Maven 3+ - just checkout the project and type `mvn install`

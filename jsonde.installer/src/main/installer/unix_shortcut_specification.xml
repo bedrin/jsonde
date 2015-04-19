@@ -39,7 +39,7 @@
             type="Application"
 
             target="xdg-open"
-            commandLine="http://www.jsonde.com/"
+            commandLine="https://github.com/bedrin/jsonde"
 
             programGroup="yes"
             desktop="no"

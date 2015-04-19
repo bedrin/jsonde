@@ -6,7 +6,7 @@
         <relativePath>..</relativePath>
         <groupId>com.jsonde</groupId>
         <artifactId>jsonde</artifactId>
-        <version>1.0.0.beta7</version>
+        <version>1.1.0</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -14,7 +14,7 @@
     <artifactId>jsonde.deployment</artifactId>
     <name>jSonde Deployment</name>
     <packaging>jar</packaging>
-    <version>1.0.0.beta7</version>
+    <version>1.1.0</version>
 
     <build>
         <plugins>
@@ -46,86 +46,6 @@
                         <configuration>
                             <tasks>
 
-                                <taskdef resource="proguard/ant/task.properties"
-                                         classpath="/usr/local/java/proguard/lib/proguard.jar"/>
-
-                                <proguard>
-                                    -libraryjars ${java.home}/lib/rt.jar
-                                    -libraryjars ${java.home}/lib/jce.jar
-                                    -libraryjars target/dependency/asm-5.0.3.jar
-                                    -libraryjars target/dependency/asm-commons-5.0.3.jar
-                                    -libraryjars target/dependency/asm-util-5.0.3.jar
-                                    -libraryjars target/dependency/asm-tree-5.0.3.jar
-                                    -libraryjars target/dependency/h2-1.1.111.jar
-                                    -libraryjars target/dependency/sdedit-3.0.5.jar
-                                    -libraryjars target/dependency/jfreechart-1.0.13.jar
-
-                                    -injars target/dependency/jsonde.agent-1.0.0.beta7.jar
-                                    -injars target/dependency/jsonde.api-1.0.0.beta7.jar
-                                    -injars target/dependency/jsonde.client-1.0.0.beta7.jar
-                                    -injars target/dependency/jsonde.gui-1.0.0.beta7.jar
-                                    -injars target/dependency/jsonde.instrumentation-1.0.0.beta7.jar
-                                    -injars target/dependency/jsonde.profiler-1.0.0.beta7.jar
-                                    -injars target/dependency/jsonde.util-1.0.0.beta7.jar
-                                    -injars target/classes
-
-                                    -outjars target/obfuscated
-
-                                    -dontnote com.jsonde.client.sun.*
-
-
-                                    -dontoptimize
-                                    -dontshrink
-
-
-                                    -keepattributes
-                                    Exceptions,InnerClasses,Signature,Deprecated,SourceFile,LineNumberTable,*Annotation*,EnclosingMethod
-
-                                    -keep public class com.jsonde.gui.reports.*
-                                    -keepclassmembers public class com.jsonde.gui.reports.* {
-                                    *;
-                                    }
-
-                                    -keep public class com.jsonde.gui.reports.custom.*
-
-                                    -keep public class * extends com.jsonde.client.domain.DomainObject
-                                    -keepclassmembers public class * extends com.jsonde.client.domain.DomainObject {
-                                    *;
-                                    }
-
-                                    -keepclasseswithmembers public class
-                                    com.jsonde.instrumentation.ByteCodeTransformer {
-                                    public byte[] transform(java.lang.ClassLoader, java.lang.String, java.lang.Class,
-                                    java.security.ProtectionDomain, byte[]);
-                                    }
-
-                                    -keep public class com.jsonde.profiler.Profiler
-
-                                    -keepclassmembers public class com.jsonde.profiler.Profiler {
-                                    public static void main(java.lang.String[]);
-                                    public static void enterMethod(long, java.lang.Object, java.lang.Object[]);
-                                    public static void enterConstructor(long, java.lang.Object, java.lang.Object[]);
-                                    public static void preEnterConstructor(long);
-                                    public static void leaveMethod();
-                                    public static void leaveMethodReturnValue(java.lang.Object);
-                                    public static void leaveMethodThrowException(java.lang.Throwable);
-                                    public static void describeClass(long);
-                                    }
-
-                                    -keepclasseswithmembers public class * {
-                                    public static void main(java.lang.String[]);
-                                    }
-
-                                    -keepclasseswithmembers public class * {
-                                    public static void premain(java.lang.String, java.lang.instrument.Instrumentation);
-                                    }
-
-                                    -keepclasseswithmembers public class * {
-                                    public static void agentmain(java.lang.String,
-                                    java.lang.instrument.Instrumentation);
-                                    }
-                                </proguard>
-
                                 <mkdir dir="target/jsonde-wrapper"/>
 
                                 <copy todir="target/jsonde-wrapper">
@@ -149,14 +69,6 @@
                         </goals>
                     </execution>
                 </executions>
-                <dependencies>
-                    <dependency>
-                        <groupId>net.sf.proguard</groupId>
-                        <artifactId>proguard</artifactId>
-                        <version>4.4</version>
-                        <scope>compile</scope>
-                    </dependency>
-                </dependencies>
             </plugin>
 
             <plugin>
@@ -164,10 +76,6 @@
                 <artifactId>maven-jar-plugin</artifactId>
                 <version>2.2</version>
                 <configuration>
-                    <classesDirectory>target/obfuscated</classesDirectory>
-                    <excludes>
-                        <exclude>*.jar</exclude>
-                    </excludes>
                     <archive>
                         <manifest>
                             <mainClass>com.jsonde.Main</mainClass>
@@ -176,12 +84,6 @@
                         </manifest>
                     </archive>
                 </configuration>
-                <executions>
-                    <execution>
-                        <id>make-jsonde-deployment-jar</id>
-                        <phase>package</phase>
-                    </execution>
-                </executions>
             </plugin>
 
             <plugin>
@@ -209,12 +111,12 @@
         <dependency>
             <groupId>com.jsonde</groupId>
             <artifactId>jsonde.gui</artifactId>
-            <version>1.0.0.beta7</version>
+            <version>1.1.0</version>
         </dependency>
         <dependency>
             <groupId>com.jsonde</groupId>
             <artifactId>jsonde.agent</artifactId>
-            <version>1.0.0.beta7</version>
+            <version>1.1.0</version>
         </dependency>
         <dependency>
             <groupId>net.charabia.jsmoothgen</groupId>
