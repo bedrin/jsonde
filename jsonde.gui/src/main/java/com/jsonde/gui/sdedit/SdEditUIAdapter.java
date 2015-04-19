@@ -641,7 +641,7 @@ public class SdEditUIAdapter implements MethodCallListener, ApplicationUserInter
 
         });
 
-        frame.setTitle("jSonde GUI version 1.1.0-SNAPSHOT");
+        frame.setTitle("jSonde GUI version 1.1.0");
 
         frame.addPropertyChangeListener("title", new PropertyChangeListener() {
 
