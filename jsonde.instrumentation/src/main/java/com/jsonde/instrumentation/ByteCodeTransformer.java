@@ -63,7 +63,7 @@ public class ByteCodeTransformer implements ClassFileTransformer {
             ClassVisitor classVisitor;
             classVisitor = new JSondeClassTransformer(classWriter, instrumentClass, classLoader, classBeingRedefined);
 
-            classReader.accept(classVisitor, ClassReader.SKIP_FRAMES);
+            classReader.accept(classVisitor, ClassReader.EXPAND_FRAMES);
 
 
             final byte[] bytes = classWriter.toByteArray();

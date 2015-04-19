@@ -22,7 +22,7 @@ public class JSondeMethodTransformer extends AdviceAdapter {
             ClassUtils.getInternalClassName(Profiler.CLASS_CANONICAL_NAME);
 
     public JSondeMethodTransformer(long methodId, MethodVisitor mv, int access, String name, String desc, String className, String parentClassName) {
-        super(Opcodes.ASM4, mv, access, name, desc);
+        super(Opcodes.ASM5, mv, access, name, desc);
         this.methodId = methodId;
         this.isConstructor = name.equals(ClassUtils.CONSTRUCTOR_METHOD_NAME);
         this.isStaticConstructor = name.equals(ClassUtils.STATIC_CONSTRUCTOR_METHOD_NAME);
@@ -33,7 +33,7 @@ public class JSondeMethodTransformer extends AdviceAdapter {
     @Override
     public void visitCode() {
         super.visitCode();
-        super.visitLabel(startFinallyLabel);
+
     }
 
     @Override
@@ -48,7 +48,7 @@ public class JSondeMethodTransformer extends AdviceAdapter {
 
 
     @Override
-    public void visitMethodInsn(int opcode, String owner, String name, String desc) {
+    public void visitMethodInsn(int opcode, String owner, String name, String desc, boolean iface) {
 
         if (isConstructor && name.equals(ClassUtils.CONSTRUCTOR_METHOD_NAME) && (owner.equals(parentClassName) || ClassUtils.getFullyQualifiedName(owner).equals(className))) {
 
@@ -58,12 +58,13 @@ public class JSondeMethodTransformer extends AdviceAdapter {
                     INVOKESTATIC,
                     PROFILER_CLASS_INTERNAL_NAME,
                     Profiler.PRE_ENTER_CONSTRUCTOR_METHOD_NAME,
-                    Profiler.PRE_ENTER_CONSTRUCTOR_METHOD_DESCRIPTOR
+                    Profiler.PRE_ENTER_CONSTRUCTOR_METHOD_DESCRIPTOR,
+                    false
             );
 
         }
 
-        super.visitMethodInsn(opcode, owner, name, desc);
+        super.visitMethodInsn(opcode, owner, name, desc, iface);
 
     }
 
@@ -78,7 +79,8 @@ public class JSondeMethodTransformer extends AdviceAdapter {
                     INVOKESTATIC,
                     PROFILER_CLASS_INTERNAL_NAME,
                     Profiler.LEAVE_METHOD_THROW_EXCEPTION_METHOD_NAME,
-                    Profiler.LEAVE_METHOD_THROW_EXCEPTION_METHOD_DESCRIPTOR
+                    Profiler.LEAVE_METHOD_THROW_EXCEPTION_METHOD_DESCRIPTOR,
+                    false
             );
 
         } else if (opcode == RETURN) {
@@ -87,7 +89,8 @@ public class JSondeMethodTransformer extends AdviceAdapter {
                     INVOKESTATIC,
                     PROFILER_CLASS_INTERNAL_NAME,
                     Profiler.LEAVE_METHOD_METHOD_NAME,
-                    Profiler.LEAVE_METHOD_METHOD_DESCRIPTOR
+                    Profiler.LEAVE_METHOD_METHOD_DESCRIPTOR,
+                    false
             );
 
         } else {
@@ -104,7 +107,8 @@ public class JSondeMethodTransformer extends AdviceAdapter {
                     INVOKESTATIC,
                     PROFILER_CLASS_INTERNAL_NAME,
                     Profiler.LEAVE_METHOD_RETURN_VALUE_METHOD_NAME,
-                    Profiler.LEAVE_METHOD_RETURN_VALUE_METHOD_DESCRIPTOR
+                    Profiler.LEAVE_METHOD_RETURN_VALUE_METHOD_DESCRIPTOR,
+                    false
             );
 
         }
@@ -123,6 +127,8 @@ public class JSondeMethodTransformer extends AdviceAdapter {
 
         try {
 
+            super.visitLabel(startFinallyLabel);
+
             if ((ACC_STATIC & methodAccess) == 0) {
 
                 //int argIndex = generateArgumentsArray(1);
@@ -137,14 +143,16 @@ public class JSondeMethodTransformer extends AdviceAdapter {
                             INVOKESTATIC,
                             PROFILER_CLASS_INTERNAL_NAME,
                             Profiler.ENTER_CONSTRUCTOR_METHOD_NAME,
-                            Profiler.ENTER_CONSTRUCTOR_METHOD_DESCRIPTOR
+                            Profiler.ENTER_CONSTRUCTOR_METHOD_DESCRIPTOR,
+                            false
                     );
                 } else {
                     super.visitMethodInsn(
                             INVOKESTATIC,
                             PROFILER_CLASS_INTERNAL_NAME,
                             Profiler.ENTER_METHOD_METHOD_NAME,
-                            Profiler.ENTER_METHOD_METHOD_DESCRIPTOR
+                            Profiler.ENTER_METHOD_METHOD_DESCRIPTOR,
+                            false
                     );
                 }
 
@@ -158,7 +166,8 @@ public class JSondeMethodTransformer extends AdviceAdapter {
                             INVOKESTATIC,
                             PROFILER_CLASS_INTERNAL_NAME,
                             Profiler.DESCRIBE_CLASS_METHOD_NAME,
-                            Profiler.DESCRIBE_CLASS_METHOD_DESCRIPTOR
+                            Profiler.DESCRIBE_CLASS_METHOD_DESCRIPTOR,
+                            false
                     );
                 }
 
@@ -173,7 +182,8 @@ public class JSondeMethodTransformer extends AdviceAdapter {
                         INVOKESTATIC,
                         PROFILER_CLASS_INTERNAL_NAME,
                         Profiler.ENTER_METHOD_METHOD_NAME,
-                        Profiler.ENTER_METHOD_METHOD_DESCRIPTOR
+                        Profiler.ENTER_METHOD_METHOD_DESCRIPTOR,
+                        false
                 );
 
             }
@@ -205,7 +215,8 @@ public class JSondeMethodTransformer extends AdviceAdapter {
                             INVOKESTATIC,
                             "java/lang/Byte",
                             "valueOf",
-                            "(B)Ljava/lang/Byte;"
+                            "(B)Ljava/lang/Byte;",
+                            false
                     );
                     break;
                 case Type.BOOLEAN:
@@ -213,7 +224,8 @@ public class JSondeMethodTransformer extends AdviceAdapter {
                             INVOKESTATIC,
                             "java/lang/Boolean",
                             "valueOf",
-                            "(Z)Ljava/lang/Boolean;"
+                            "(Z)Ljava/lang/Boolean;",
+                            false
                     );
                     break;
                 case Type.SHORT:
@@ -221,7 +233,8 @@ public class JSondeMethodTransformer extends AdviceAdapter {
                             INVOKESTATIC,
                             "java/lang/Short",
                             "valueOf",
-                            "(S)Ljava/lang/Short;"
+                            "(S)Ljava/lang/Short;",
+                            false
                     );
                     break;
                 case Type.CHAR:
@@ -229,7 +242,8 @@ public class JSondeMethodTransformer extends AdviceAdapter {
                             INVOKESTATIC,
                             "java/lang/Character",
                             "valueOf",
-                            "(C)Ljava/lang/Character;"
+                            "(C)Ljava/lang/Character;",
+                            false
                     );
                     break;
                 case Type.INT:
@@ -237,7 +251,8 @@ public class JSondeMethodTransformer extends AdviceAdapter {
                             INVOKESTATIC,
                             "java/lang/Integer",
                             "valueOf",
-                            "(I)Ljava/lang/Integer;"
+                            "(I)Ljava/lang/Integer;",
+                            false
                     );
                     break;
                 case Type.FLOAT:
@@ -245,7 +260,8 @@ public class JSondeMethodTransformer extends AdviceAdapter {
                             INVOKESTATIC,
                             "java/lang/Float",
                             "valueOf",
-                            "(F)Ljava/lang/Float;"
+                            "(F)Ljava/lang/Float;",
+                            false
                     );
                     break;
                 case Type.LONG:
@@ -253,7 +269,8 @@ public class JSondeMethodTransformer extends AdviceAdapter {
                             INVOKESTATIC,
                             "java/lang/Long",
                             "valueOf",
-                            "(J)Ljava/lang/Long;"
+                            "(J)Ljava/lang/Long;",
+                            false
                     );
                     break;
                 case Type.DOUBLE:
@@ -261,7 +278,8 @@ public class JSondeMethodTransformer extends AdviceAdapter {
                             INVOKESTATIC,
                             "java/lang/Double",
                             "valueOf",
-                            "(D)Ljava/lang/Double;"
+                            "(D)Ljava/lang/Double;",
+                            false
                     );
                     break;
             }
