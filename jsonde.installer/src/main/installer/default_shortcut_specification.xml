@@ -35,7 +35,7 @@
             name="jSonde web site"
             description="Visit jSonde official web site"
 
-            target="http://www.jsonde.com/"
+            target="https://github.com/bedrin/jsonde"
             initialState="normal"
 
             programGroup="yes"

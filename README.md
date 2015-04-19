@@ -185,5 +185,4 @@ Heap analyzer allows you to browse the snapshot of java memory heap and analyze 
 
 Building
 ============
-jSonde is built using JDK6 and Maven 3+ - just checkout the project and type `mvn install`
-JDK6 is required only for building the project - once it's built, you can use jSonde with JRE 1.5+
+jSonde is built using JDK 1.5+ and Maven 3+ - just checkout the project and type `mvn install`

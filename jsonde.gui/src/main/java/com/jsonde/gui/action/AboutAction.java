@@ -31,12 +31,6 @@ public class AboutAction extends AbstractAction {
 
         aboutDialog.setVisible(true);
 
-        /*JOptionPane.showMessageDialog(
-                applicationUserInterface.getFrame(),
-                "jSonde version 1.0.0.beta7 http://www.jsonde.com/ Copyright (c) 2009",
-                "jSonde",
-                JOptionPane.INFORMATION_MESSAGE);*/
-
     }
 
 }

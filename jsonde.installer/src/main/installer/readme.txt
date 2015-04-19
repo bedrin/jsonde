@@ -18,4 +18,4 @@ Web
 ==========
 
 You can find more details at jSonde web site:
-http://www.jsonde.com/
+https://github.com/bedrin/jsonde
