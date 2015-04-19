@@ -6,7 +6,7 @@
         <relativePath>..</relativePath>
         <groupId>com.jsonde</groupId>
         <artifactId>jsonde</artifactId>
-        <version>1.1.0-SNAPSHOT</version>
+        <version>1.2.0-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -14,7 +14,7 @@
     <artifactId>jsonde.deployment</artifactId>
     <name>jSonde Deployment</name>
     <packaging>jar</packaging>
-    <version>1.1.0-SNAPSHOT</version>
+    <version>1.2.0-SNAPSHOT</version>
 
     <build>
         <plugins>
@@ -111,12 +111,12 @@
         <dependency>
             <groupId>com.jsonde</groupId>
             <artifactId>jsonde.gui</artifactId>
-            <version>1.1.0-SNAPSHOT</version>
+            <version>1.2.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>com.jsonde</groupId>
             <artifactId>jsonde.agent</artifactId>
-            <version>1.1.0-SNAPSHOT</version>
+            <version>1.2.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>net.charabia.jsmoothgen</groupId>

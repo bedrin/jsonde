@@ -22,7 +22,7 @@ public class AboutDialog extends JSondeDialog {
 
         contentPane.setLayout(new BorderLayout());
 
-        JLabel label = new JLabel("<html>jSonde version 1.1.0-SNAPSHOT https://github.com/bedrin/jsonde Copyright (c) 2015");
+        JLabel label = new JLabel("<html>jSonde version 1.2.0-SNAPSHOT https://github.com/bedrin/jsonde Copyright (c) 2015");
         label.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
 
         contentPane.add(label, BorderLayout.NORTH);

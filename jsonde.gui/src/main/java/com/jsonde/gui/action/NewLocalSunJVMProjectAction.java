@@ -65,7 +65,7 @@ public class NewLocalSunJVMProjectAction extends AbstractAction {
 
             try {
 
-                File agentJarFile = new File("./lib/jsonde.agent-1.1.0-SNAPSHOT.jar");
+                File agentJarFile = new File("./lib/jsonde.agent-1.2.0-SNAPSHOT.jar");
 
                 vmService.attachAgent(vmId, agentJarFile.getAbsolutePath(), "60001");
 
