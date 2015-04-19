@@ -1,7 +1,7 @@
 package com.jsonde.gui.dialog.about;
 
 import com.jsonde.gui.dialog.JSondeDialog;
-import com.jsonde.util.file.FileUtils;
+import com.jsonde.util.file.c;
 
 import javax.swing.*;
 import java.awt.*;
@@ -22,7 +22,7 @@ public class AboutDialog extends JSondeDialog {
 
         contentPane.setLayout(new BorderLayout());
 
-        JLabel label = new JLabel("<html>jSonde version 1.0.0.beta7 https://github.com/bedrin/jsonde Copyright (c) 2015");
+        JLabel label = new JLabel("<html>jSonde version 1.1.0-SNAPSHOT https://github.com/bedrin/jsonde Copyright (c) 2015");
         label.setBorder(BorderFactory.createEmptyBorder(5,5,5,5));
 
         contentPane.add(label, BorderLayout.NORTH);

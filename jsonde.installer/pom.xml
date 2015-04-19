@@ -6,7 +6,7 @@
         <relativePath>..</relativePath>
         <groupId>com.jsonde</groupId>
         <artifactId>jsonde</artifactId>
-        <version>1.0.0.beta7</version>
+        <version>1.1.0-SNAPSHOT</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
@@ -14,7 +14,7 @@
     <artifactId>jsonde.installer</artifactId>
     <name>jSonde Installer</name>
     <packaging>pom</packaging>
-    <version>1.0.0.beta7</version>
+    <version>1.1.0-SNAPSHOT</version>
 
     <build>
         <plugins>
@@ -30,7 +30,7 @@
                             <artifactId>jsonde.deployment</artifactId>
                             <type>tar.gz</type>
                             <classifier>binaries</classifier>
-                            <version>1.0.0.beta7</version>
+                            <version>1.1.0-SNAPSHOT</version>
                         </artifactItem>
                     </artifactItems>
                 </configuration>
@@ -58,7 +58,7 @@
                                 <mkdir dir="target/jsonde-installer/project"/>
 
                                 <move todir="target/jsonde-installer/project">
-                                    <fileset dir="target/jsonde-installer/jsonde-1.0.0.beta7"/>
+                                    <fileset dir="target/jsonde-installer/jsonde-1.1.0-SNAPSHOT"/>
                                 </move>
 
                                 <copy todir="target/jsonde-installer">
@@ -73,7 +73,7 @@
 
                                 <izpack
                                         input="${basedir}/target/jsonde-installer/install.xml"
-                                        output="${basedir}/target/jsonde-1.0.0.beta7-installer.jar"
+                                        output="${basedir}/target/jsonde-1.1.0-SNAPSHOT-installer.jar"
                                         basedir="${basedir}/target/jsonde-installer"
                                         installerType="standard"
                                         inheritAll="true"

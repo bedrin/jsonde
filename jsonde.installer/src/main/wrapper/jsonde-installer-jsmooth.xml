@@ -9,10 +9,10 @@
     <arguments></arguments>
     <currentDirectory>${EXECUTABLEPATH}</currentDirectory>
     <embeddedJar>true</embeddedJar>
-    <executableName>../../../target/jsonde-1.0.0.beta7-installer.exe</executableName>
+    <executableName>../../../target/jsonde-1.1.0-SNAPSHOT-installer.exe</executableName>
     <iconLocation>../icons/setup.ico</iconLocation>
     <initialMemoryHeap>-1</initialMemoryHeap>
-    <jarLocation>../../../target/jsonde-1.0.0.beta7-installer.jar</jarLocation>
+    <jarLocation>../../../target/jsonde-1.1.0-SNAPSHOT-installer.jar</jarLocation>
     <mainClassName>com.izforge.izpack.installer.Installer</mainClassName>
     <maximumMemoryHeap>-1</maximumMemoryHeap>
     <maximumVersion></maximumVersion>
