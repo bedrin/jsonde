@@ -34,6 +34,10 @@
         <h1>
 <a id="jsonde" class="anchor" href="#jsonde" aria-hidden="true"><span class="octicon octicon-link"></span></a>jSonde</h1>
 
+<p><a href="https://travis-ci.org/bedrin/jsonde"><img src="https://travis-ci.org/bedrin/jsonde.svg?branch=master" alt="CI Status"></a>
+<a href="https://coveralls.io/r/bedrin/jsonde?branch=master"><img src="https://coveralls.io/repos/bedrin/jsonde/badge.svg?branch=master" alt="Coverage Status"></a>
+<a href="https://bintray.com/bedrin/github/jsonde/_latestVersion"> <img src="https://api.bintray.com/packages/bedrin/github/jsonde/images/download.svg" alt="Download"> </a></p>
+
 <p>jSonde allows you to generate sequence diagrams directly from your application runtime! This gives you a lot of advantages:</p>
 
 <ul>
@@ -43,170 +47,148 @@
 <li>Excellent companion for a common debugger</li>
 </ul>
 
-<h1>jSonde Manual</h1>
+<p><img src="http://bedrin.github.io/jsonde/sequenceDiagram.png" alt="Sequence Diagram" title="Sequence Diagram"></p>
 
-<h2>Overview</h2>
+<h1>
+<a id="manual" class="anchor" href="#manual" aria-hidden="true"><span class="octicon octicon-link"></span></a>Manual</h1>
+
+<h1>
+<a id="overview" class="anchor" href="#overview" aria-hidden="true"><span class="octicon octicon-link"></span></a>Overview</h1>
 
 <p>jSonde allows you to analyze existing Java applications.</p>
 
-<p>It can generate sequence diagrams, measure performance (both cpu and memory) and build different reports, like jar
-    dependencies and others.</p>
+<p>It can generate sequence diagrams, measure performance (both cpu and memory) and build different reports, like jar dependencies and others.</p>
 
-<p>jSonde doesn't require any specific knowledge for using it and supports various operation systems and Java
-    environments.</p>
+<p>jSonde doesn't require any specific knowledge for using it and supports various operation systems and Java environments.</p>
 
-<p>jSonde consists of two main components:
-<ol>
-    <li>An agent which is attached to java processes and collects information</li>
-    <li>A rich GUI for visualising the results collected by the agent</li>
-</ol>
-</p>
-<h2>Attaching jSonde agent to java applications</h2>
+<p>jSonde consists of two main components:</p>
 
-<p>There're two main ways to attach jSonde agent to java applications - you can either specify additional parameters to
-    java command or you can attach the agent dynamically without even restarting your application.</p>
+<ul>
+<li>An agent which is attached to java processes and collects information</li>
+<li>A rich GUI for visualising the results collected by the agent</li>
+</ul>
 
-<h3>Attaching agent dynamically</h3>
+<h1>
+<a id="attaching-jsonde-agent-to-java-applications" class="anchor" href="#attaching-jsonde-agent-to-java-applications" aria-hidden="true"><span class="octicon octicon-link"></span></a>Attaching jSonde agent to java applications</h1>
+
+<p>There're two main ways to attach jSonde agent to java applications - you can either specify additional parameters to java command or you can attach the agent dynamically without even restarting your application.</p>
+
+<h2>
+<a id="attaching-agent-dynamically" class="anchor" href="#attaching-agent-dynamically" aria-hidden="true"><span class="octicon octicon-link"></span></a>Attaching agent dynamically</h2>
 
 <p>This is the simplest way to attach jSonde agent to your application</p>
 
-<p>Select "File" \ "Attach to Sun JVM" menu item, and you'll see the dialog like shown below:</p>
-<img src="attachToJvm.png">
+<p>Select "File" \ "Attach to Sun JVM" menu item, and you'll see the dialog like shown below:
+<img src="http://bedrin.github.io/jsonde/attachToJvm.png" alt="Attach to JVM" title="Attach to JVM"></p>
 
 <p>In this dialog there's a list of all java applications running on your computer</p>
 
 <p>Other fields in this dialog will be explained in the other chapter of this manual</p>
 
-<p>Please note, that this feature may be unavailable on some virtual machines. It was properly tested only on Sun JVM
-    1.6+</p>
+<p>Please note, that this feature may be unavailable on some virtual machines. It was properly tested only on Sun JVM 1.6+</p>
 
-<h3>Attaching agent using command line parameters</h3>
+<h2>
+<a id="attaching-agent-using-command-line-parameters" class="anchor" href="#attaching-agent-using-command-line-parameters" aria-hidden="true"><span class="octicon octicon-link"></span></a>Attaching agent using command line parameters</h2>
 
 <p>Let's assume that you execute your java application using following command</p>
 
-<p><i>java -jar app.jar</i></p>
+<p>java -jar app.jar</p>
 
 <p>In order to execute this application with jSonde agent, you need to add new parameters like shown below:</p>
 
-<p><i>java <b>-javaagent:&lt;path-to-jSonde-folder&gt;/lib/jsonde.agent-1.0.0.beta7.jar=60001</b>-jar app.jar</i></p>
+<p>java -javaagent:/lib/jsonde.agent-1.1.0.jar=60001 -jar app.jar</p>
 
-<p>By no means you can use jSonde to analyze not only J2SE applications. You can find a few examples of using jSonde
-    with Tomcat, JBoss and other environments below.</p>
+<p>By no means you can use jSonde to analyze not only J2SE applications. You can find a few examples of using jSonde with Tomcat, JBoss and other environments below.</p>
 
-<h4>Apache Tomcat</h4>
+<h3>
+<a id="apache-tomcat" class="anchor" href="#apache-tomcat" aria-hidden="true"><span class="octicon octicon-link"></span></a>Apache Tomcat</h3>
 
-<h5>Microsoft Windows</h5>
+<h4>
+<a id="microsoft-windows" class="anchor" href="#microsoft-windows" aria-hidden="true"><span class="octicon octicon-link"></span></a>Microsoft Windows</h4>
 
 <p>File: %TOMCAT_HOME%\bin\catalina.bat</p>
 
 <p>Add the following line:</p>
 
-<p><i>set JAVA_OPTS=-javaagent:&lt;path-to-jSonde-folder&gt;/lib/jsonde.agent-1.0.0.beta7.jar=60001 %JAVA_OPTS%</i></p>
+<p>set JAVA_OPTS=-javaagent:/lib/jsonde.agent-1.1.0.jar=60001 %JAVA_OPTS%</p>
 
 <p>If you use the windows service or system tray startup use the following parameters instead:</p>
 
-<p><i>-javaagent:&lt;path-to-jSonde-folder&gt;/lib/jsonde.agent-1.0.0.beta7.jar=60001</i></p>
+<p>-javaagent:/lib/jsonde.agent-1.1.0.jar=60001</p>
 
-<h5>GNU/Linux & Mac OS X</h5>
+<h4>
+<a id="gnulinux--mac-os-x" class="anchor" href="#gnulinux--mac-os-x" aria-hidden="true"><span class="octicon octicon-link"></span></a>GNU/Linux &amp; Mac OS X</h4>
 
 <p>File: $TOMCAT_HOME/bin/catalina.sh</p>
 
 <p>Add the following line:</p>
 
-<p><i>JAVA_OPTS="-javaagent:&lt;path-to-jSonde-folder&gt;/lib/jsonde.agent-1.0.0.beta7.jar=60001 $JAVA_OPTS"</i></p>
+<p>JAVA_OPTS="-javaagent:/lib/jsonde.agent-1.1.0.jar=60001 $JAVA_OPTS"</p>
 
-<h4>JBoss</h4>
+<h3>
+<a id="jboss" class="anchor" href="#jboss" aria-hidden="true"><span class="octicon octicon-link"></span></a>JBoss</h3>
 
-<h5>Microsoft Windows</h5>
+<h4>
+<a id="microsoft-windows-1" class="anchor" href="#microsoft-windows-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>Microsoft Windows</h4>
 
 <p>File: %JBOSS_HOME%\bin\run.bat</p>
 
 <p>Add the following line:</p>
 
-<p><i>set JAVA_OPTS=-javaagent:&lt;path-to-jSonde-folder&gt;/lib/jsonde.agent-1.0.0.beta7.jar=60001 %JAVA_OPTS%</i></p>
+<p>set JAVA_OPTS=-javaagent:/lib/jsonde.agent-1.1.0.jar=60001 %JAVA_OPTS%</p>
 
-<h5>GNU/Linux & Mac OS X</h5>
+<h4>
+<a id="gnulinux--mac-os-x-1" class="anchor" href="#gnulinux--mac-os-x-1" aria-hidden="true"><span class="octicon octicon-link"></span></a>GNU/Linux &amp; Mac OS X</h4>
 
 <p>File: $JBOSS_HOME/bin/run.sh</p>
 
 <p>Add the following line:</p>
 
-<p><i>JAVA_OPTS="-javaagent:&lt;path-to-jSonde-folder&gt;/lib/jsonde.agent-1.0.0.beta7.jar=60001 $JAVA_OPTS"</i></p>
+<p>JAVA_OPTS="-javaagent:/lib/jsonde.agent-1.1.0.jar=60001 $JAVA_OPTS"</p>
 
-<h4>Other Application Servers</h4>
+<h3>
+<a id="other-application-servers" class="anchor" href="#other-application-servers" aria-hidden="true"><span class="octicon octicon-link"></span></a>Other Application Servers</h3>
 
 <p>Just check your application server configuration for the place, where you should specify jvm parameters</p>
 
-<p>Hint: this is the same place where you should specify memory options -Xms & -Xmx</p>
+<p>Hint: this is the same place where you should specify memory options -Xms &amp; -Xmx</p>
 
-<h4>Using jSonde with applets</h4>
+<h3>
+<a id="using-jsonde-with-applets" class="anchor" href="#using-jsonde-with-applets" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using jSonde with applets</h3>
 
 <p>You can analyze applets running inside a browser with Java Plugin installed.</p>
 
-<p>Please add the following option in "Java(TM) Plug-in Control Panel", on the "Advanced" tab, in the field "Java
-    Runtime Parameters":</p>
+<p>Please add the following option in "Java(TM) Plug-in Control Panel", on the "Advanced" tab, in the field "Java Runtime Parameters":</p>
 
-<p><i>-javaagent:&lt;path-to-jSonde-folder&gt;/lib/jsonde.agent-1.0.0.beta7.jar=60001</i></p>
+<p>-javaagent:/lib/jsonde.agent-1.1.0.jar=60001</p>
 
 <p>On Windows, "Java(TM) Plug-in Control Panel" is accessible from the Windows "Control Panel"</p>
 
-<p><b>Important</b>: If the browser is running, you must restart it after you have made the changes.</p>
+<p>Important: If the browser is running, you must restart it after you have made the changes.</p>
 
-<p></p>
+<p>You can also analyze applets started with appletviewer command by passing -J-javaagent:/lib/jsonde.agent-1.1.0.jar=60001 as a command line parameter.</p>
 
-<p>You can also analyze applets started with appletviewer command by passing <i>-J-javaagent:&lt;path-to-jSonde-folder&gt;/lib/jsonde.agent-1.0.0.beta7.jar=60001</i>
-    as a command line parameter.</p>
-<!--
-<h4>Using jSonde with J2ME applications</h4>
-<p>In order to use jSonde for analyzing J2ME applications, you need to have Sun's Wireless Toolkit installed on your computer</p>
-For example, the following string:
+<h2>
+<a id="connecting-to-jsonde-agent-specified-by-command-line-parameters" class="anchor" href="#connecting-to-jsonde-agent-specified-by-command-line-parameters" aria-hidden="true"><span class="octicon octicon-link"></span></a>Connecting to jSonde agent specified by command line parameters</h2>
 
-emulator -Xdescriptor:Demo3D.jad
+<p>After you've added jSonde agent to java parameters and started your application, you'll se the following message in output:</p>
 
-should be modified to look as follows:
-
-emulator -Xnoagent -Xdebug -Xrunjdwp:transport=dt_socket,address=10000,server=y,suspend=n -Xdescriptor:Demo3D.jad-->
-
-<h3>Connecting to jSonde agent specified by command line parameters</h3>
-
-<p>After you've added jSonde agent to java parameters and started your application, you'll se the following message in
-    output:</p>
-
-<p><i>jSonde agent started</i></p>
+<p>jSonde agent started</p>
 
 <p>Now you need to start jSonde GUI and select "File" \ "New Project" menu item</p>
 
-<p>After that you'll see a dialog like shown below. It's pretty similar to one, we've described in chapter "Attaching
-    agent dynamically" above. Hence the meaning of the similar fields in these two dialogs is the same</p>
-<img src="newProjectDialog.png">
-<table border="0">
-    <tr>
-        <td>Project name</td>
-        <td>The name of your project. It will be used for creating jSonde project files</td>
-    </tr>
-    <tr>
-        <td>Project files location</td>
-        <td>Specifies a folder for storing jSonde project files. Each project consists of several files with the same
-            name but different extensions
-        </td>
-    </tr>
-    <tr>
-        <td>Agent host</td>
-        <td>The IP address of the computer where jSonde agent is running. Value "127.0.0.1" is fine if you're executing
-            jSonde GUI and jSonde agent on the same computer
-        </td>
-    </tr>
-    <tr>
-        <td>Agent port</td>
-        <td>TCP port for communicating between jSonde agent and GUI</td>
-    </tr>
-    <tr>
-        <td>Filters</td>
-        <td>Allows you to specify filters for analyze. See chapter below</td>
-    </tr>
-</table>
+<p>After that you'll see a dialog like shown below. It's pretty similar to one, we've described in chapter "Attaching agent dynamically" above. Hence the meaning of the similar fields in these two dialogs is the same</p>
 
-<h4>Filtering in jSonde</h4>
+<p><img src="http://bedrin.github.io/jsonde/newProjectDialog.png" alt="New Project" title="New Project"></p>
+
+<p>|Project name|The name of your project. It will be used for creating jSonde project files|
+|Project files location|Specifies a folder for storing jSonde project files. Each project consists of several files with the same name but different extensions|
+|Agent host|The IP address of the computer where jSonde agent is running. Value "127.0.0.1" is fine if you're executing jSonde GUI and jSonde agent on the same computer|
+|Agent port|    TCP port for communicating between jSonde agent and GUI|
+|Filters|Allows you to specify filters for analyze. See chapter below|</p>
+
+<h2>
+<a id="filtering-in-jsonde" class="anchor" href="#filtering-in-jsonde" aria-hidden="true"><span class="octicon octicon-link"></span></a>Filtering in jSonde</h2>
 
 <p>jSonde allows you to specify filters in order to analyze only specified list of classes</p>
 
@@ -214,81 +196,83 @@ emulator -Xnoagent -Xdebug -Xrunjdwp:transport=dt_socket,address=10000,server=y,
 
 <p>Let's assume that your classes are all located in package "com.mycompany"</p>
 
-<p>In this case first of all we need to exclude all classes and after that include classes from "com.mycompany" package:
-    Exclude "*"; Include "com.mycompany.*"</p>
+<p>In this case first of all we need to exclude all classes and after that include classes from "com.mycompany" package: Exclude "<em>"; Include "com.mycompany.</em>"</p>
 
 <p>Now click on "Connect" button as that's it - you're ready to start working with jSonde</p>
 
-<h2>Using jSonde to analyze applications</h2>
+<h1>
+<a id="using-jsonde-to-analyze-applications" class="anchor" href="#using-jsonde-to-analyze-applications" aria-hidden="true"><span class="octicon octicon-link"></span></a>Using jSonde to analyze applications</h1>
 
-<p>You can use main menu or accordion pane on the left for opening different views: sequence diagrams, reports,
-    profiling and so on</p>
+<p>You can use main menu or accordion pane on the left for opening different views: sequence diagrams, reports, profiling and so on</p>
 
-<h3>Viewing sequence diagrams</h3>
+<h2>
+<a id="viewing-sequence-diagrams" class="anchor" href="#viewing-sequence-diagrams" aria-hidden="true"><span class="octicon octicon-link"></span></a>Viewing sequence diagrams</h2>
 
-<p>Select "Sequence Diagrams" pane and you'll see a tree with classes of your applications. The leaves of this tree are
-    "root" method calls discovered by jSonde agent.</p>
+<p>Select "Sequence Diagrams" pane and you'll see a tree with classes of your applications. The leaves of this tree are "root" method calls discovered by jSonde agent.</p>
 
-<p>"root" method call is the first method invocation inside the specified classes scope (see section about filters
-    above)</p>
+<p>"root" method call is the first method invocation inside the specified classes scope (see section about filters above)</p>
 
 <p>If you double click on the selected method, a new tab with sequence diagram will be opened in the workspace</p>
 
-<p>You can use buttons in toolbar for tuning the diagram view; mouse drag is also supported for scrolling the
-    diagram</p>
-<img src="sequenceDiagram.png">
+<p>You can use buttons in toolbar for tuning the diagram view; mouse drag is also supported for scrolling the diagram</p>
 
-<h3>Viewing reports</h3>
+<p><img src="http://bedrin.github.io/jsonde/sequenceDiagram.png" alt="Sequence Diagram" title="Sequence Diagram"></p>
+
+<h2>
+<a id="viewing-reports" class="anchor" href="#viewing-reports" aria-hidden="true"><span class="octicon octicon-link"></span></a>Viewing reports</h2>
 
 <p>Select "Reports" pane in order to view the list of available reports. They're also accessible through main menu</p>
 
-<h4>Dependency report</h4>
+<h3>
+<a id="dependency-report" class="anchor" href="#dependency-report" aria-hidden="true"><span class="octicon octicon-link"></span></a>Dependency report</h3>
 
 <p>This report allows you to browse the dependencies of code sources (.jar files for example) inside your project</p>
 
 <p>Sometimes it can be very useful to find missing or redundant dependency</p>
-<img src="dependencyReport.png">
 
-<h4>Top Code Sources by Execution Time report</h4>
+<p><img src="http://bedrin.github.io/jsonde/dependencyReport.png" alt="Dependency Report" title="Dependency Report"></p>
+
+<h3>
+<a id="top-code-sources-by-execution-time-report" class="anchor" href="#top-code-sources-by-execution-time-report" aria-hidden="true"><span class="octicon octicon-link"></span></a>Top Code Sources by Execution Time report</h3>
 
 <p>This report shows the top code sources by execution time.</p>
 
-<p>It allows you to find the most "slow" or rather most "used" method grouped by jar files</p>
-<img src="topCodeSources.png">
+<p>It allows you to find the most "slow" or rather most "used" method grouped by jar files
+<img src="http://bedrin.github.io/jsonde/topCodeSources.png" alt="Top Code Sources" title="Top Code Sources"></p>
 
-<h4>Top Methods throwing exception</h4>
+<h3>
+<a id="top-methods-throwing-exception" class="anchor" href="#top-methods-throwing-exception" aria-hidden="true"><span class="octicon octicon-link"></span></a>Top Methods throwing exception</h3>
 
 <p>This report shows you the top method throwing any exceptions</p>
 
-<p>If a method throws an exception a lot of time, it could be a good idea to review it's interface</p>
-<img src="topExceptions.png">
+<p>If a method throws an exception a lot of time, it could be a good idea to review it's interface
+<img src="http://bedrin.github.io/jsonde/topExceptions.png" alt="Top Method Throwing Exception" title="Top Method Throwing Exception"></p>
 
-<h3>jSonde Profiler</h3>
+<h2>
+<a id="jsonde-profiler" class="anchor" href="#jsonde-profiler" aria-hidden="true"><span class="octicon octicon-link"></span></a>jSonde Profiler</h2>
 
-<p>jSonde supports both cpu and memory profiling, and allows you to find most executed methods, most created objects and
-    so on</p>
+<p>jSonde supports both cpu and memory profiling, and allows you to find most executed methods, most created objects and so on</p>
 
 <p>Click on "Profiler" in accordion panel on the left, and select appropriate profiling view</p>
 
-<h4>CPU Profiler</h4>
+<h3>
+<a id="cpu-profiler" class="anchor" href="#cpu-profiler" aria-hidden="true"><span class="octicon octicon-link"></span></a>CPU Profiler</h3>
 
 <p>CPU profiler shows you method invocation counters and total execution time of the methods</p>
 
-<p>For convenient browsing, this data is shown as a tree</p>
-<img src="cpuProfiler.png">
+<p>For convenient browsing, this data is shown as a tree
+<img src="http://bedrin.github.io/jsonde/cpuProfiler.png" alt="CPU Profiler" title="CPU Profiler"></p>
 
-<h4>Heap analyzer</h4>
+<h3>
+<a id="heap-analyzer" class="anchor" href="#heap-analyzer" aria-hidden="true"><span class="octicon octicon-link"></span></a>Heap analyzer</h3>
 
-<p>Heap analyzer allows you to browse the snapshot of java memory heap and analyze what objects are created most often,
-    what objects consume the largest amount of memory and other values </p>
-<img src="memoryHeap.png">
-
+<p>Heap analyzer allows you to browse the snapshot of java memory heap and analyze what objects are created most often, what objects consume the largest amount of memory and other values
+<img src="http://bedrin.github.io/jsonde/memoryHeap.png" alt="Heap Analyzer" title="Heap Analyzer"></p>
 
 <h1>
 <a id="building" class="anchor" href="#building" aria-hidden="true"><span class="octicon octicon-link"></span></a>Building</h1>
 
-<p>jSonde is built using JDK6 and Maven 3+ - just checkout the project and type <code>mvn install</code>
-JDK6 is required only for building the project - once it's built, you can use jSonde with JRE 1.5+</p>
+<p>jSonde is built using JDK 1.5+ and Maven 3+ - just checkout the project and type <code>mvn install</code></p>
       </section>
     </div>
 
@@ -296,11 +280,21 @@ JDK6 is required only for building the project - once it's built, you can use jS
     <div id="footer_wrap" class="outer">
       <footer class="inner">
         <p class="copyright">Jsonde maintained by <a href="https://github.com/bedrin">bedrin</a></p>
-        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+        <p>Published with <a href="https://pages.github.com">GitHub Pages</a></p>
       </footer>
     </div>
 
-    
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-62027168-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
 
   </body>
 </html>
