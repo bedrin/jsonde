@@ -2,6 +2,7 @@ jSonde
 ============
 [![CI Status](https://travis-ci.org/bedrin/jsonde.svg?branch=master)](https://travis-ci.org/bedrin/jsonde)
 [![Coverage Status](https://coveralls.io/repos/bedrin/jsonde/badge.svg?branch=master)](https://coveralls.io/r/bedrin/jsonde?branch=master)
+[ ![Download](https://api.bintray.com/packages/bedrin/github/jsonde/images/download.svg) ](https://bintray.com/bedrin/github/jsonde/_latestVersion)
 
 jSonde allows you to generate sequence diagrams directly from your application runtime! This gives you a lot of advantages:
  * Understand the code created by your colleagues/partners in a short time
