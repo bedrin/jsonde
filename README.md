@@ -37,10 +37,9 @@ Select "File" \ "Attach to Sun JVM" menu item, and you'll see the dialog like sh
 ![Attach to JVM](http://bedrin.github.io/jsonde/attachToJvm.png "Attach to JVM")
 
 In this dialog there's a list of all java applications running on your computer
-
 Other fields in this dialog will be explained in the other chapter of this manual
 
-Please note, that this feature may be unavailable on some virtual machines. It was properly tested only on Sun JVM 1.6+
+> *WARNING* if you start jSonde using 32bit Java you will be able to attach only to 32 bit Java processes and similar for 64bit
 
 ## Attaching agent using command line parameters
 
