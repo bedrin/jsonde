@@ -5,7 +5,6 @@ import com.jsonde.api.MessageListener;
 import com.jsonde.api.methodCall.MethodCallDto;
 import com.jsonde.api.methodCall.MethodCallSummaryDto;
 import com.jsonde.profiler.network.NetworkServerException;
-import com.jsonde.util.CurrentClassGetter;
 import com.jsonde.util.log.Log;
 
 import java.lang.instrument.Instrumentation;
@@ -39,37 +38,8 @@ public abstract class Profiler {
         return profiler;
     }
 
-    public static final String ENTER_METHOD_METHOD_NAME =
-            "enterMethod";
-    public static final String ENTER_METHOD_METHOD_DESCRIPTOR =
-            "(JLjava/lang/Object;[Ljava/lang/Object;)V";
-    private static final String ENTER_METHOD_METHOD_NAME_WITH_DESCRIPTOR =
-            ENTER_METHOD_METHOD_NAME + ENTER_METHOD_METHOD_DESCRIPTOR;
-
-    public static void enterMethod(long methodId, Object object, Object[] arguments) {
-
-        try {
-
-            if (log.isTraceEnabled()) {
-
-                log.entering(
-                        ENTER_METHOD_METHOD_NAME_WITH_DESCRIPTOR,
-                        methodId,
-                        object,
-                        arguments
-                );
-            }
-
-            getProfiler().enterMethodImpl(methodId, object, arguments);
-
-            log.exiting(ENTER_METHOD_METHOD_NAME_WITH_DESCRIPTOR);
-
-        } catch (Throwable e) {
-            log.error(ENTER_METHOD_METHOD_NAME_WITH_DESCRIPTOR, e);
-        } finally {
-            log.exiting(ENTER_METHOD_METHOD_NAME_WITH_DESCRIPTOR);
-        }
-
+    public static void enterMethod(long methodId) {
+        getProfiler().enterMethodImpl(methodId);
     }
 
     public static final String ENTER_CONSTRUCTOR_METHOD_NAME =
@@ -79,188 +49,12 @@ public abstract class Profiler {
     private static final String ENTER_CONSTRUCTOR_METHOD_NAME_WITH_DESCRIPTOR =
             ENTER_CONSTRUCTOR_METHOD_NAME + ENTER_CONSTRUCTOR_METHOD_DESCRIPTOR;
 
-    public static void enterConstructor(long methodId, Object object, Object[] arguments) {
-
-        try {
-
-            if (log.isTraceEnabled()) {
-
-                log.entering(
-                        ENTER_CONSTRUCTOR_METHOD_NAME_WITH_DESCRIPTOR,
-                        methodId,
-                        object,
-                        arguments
-                );
-            }
-
-            getProfiler().enterConstructorImpl(methodId, object, arguments);
-
-            log.exiting(ENTER_CONSTRUCTOR_METHOD_NAME_WITH_DESCRIPTOR);
-
-        } catch (Throwable e) {
-            log.error(ENTER_CONSTRUCTOR_METHOD_NAME_WITH_DESCRIPTOR, e);
-        } finally {
-            log.exiting(ENTER_CONSTRUCTOR_METHOD_NAME_WITH_DESCRIPTOR);
-        }
-
-    }
-
-    public static final String PRE_ENTER_CONSTRUCTOR_METHOD_NAME =
-            "preEnterConstructor";
-    public static final String PRE_ENTER_CONSTRUCTOR_METHOD_DESCRIPTOR =
-            "(J)V";
-    public static final String PRE_ENTER_CONSTRUCTOR_METHOD_NAME_WITH_DESCRIPTOR =
-            PRE_ENTER_CONSTRUCTOR_METHOD_NAME + PRE_ENTER_CONSTRUCTOR_METHOD_DESCRIPTOR;
-
-    public static void preEnterConstructor(long methodId) {
-
-        try {
-
-            if (log.isTraceEnabled()) {
-
-                log.entering(
-                        PRE_ENTER_CONSTRUCTOR_METHOD_NAME_WITH_DESCRIPTOR,
-                        methodId
-                );
-            }
-
-            getProfiler().preEnterConstructorImpl(methodId);
-
-            log.exiting(PRE_ENTER_CONSTRUCTOR_METHOD_NAME_WITH_DESCRIPTOR);
-
-        } catch (Throwable e) {
-            log.error(PRE_ENTER_CONSTRUCTOR_METHOD_NAME_WITH_DESCRIPTOR, e);
-        } finally {
-            log.exiting(PRE_ENTER_CONSTRUCTOR_METHOD_NAME_WITH_DESCRIPTOR);
-        }
-
-    }
-
     public static final String LEAVE_METHOD_METHOD_NAME =
             "leaveMethod";
     public static final String LEAVE_METHOD_METHOD_DESCRIPTOR =
             "()V";
     public static final String LEAVE_METHOD_METHOD_NAME_WITH_DESCRIPTOR =
             LEAVE_METHOD_METHOD_NAME + LEAVE_METHOD_METHOD_DESCRIPTOR;
-
-    public static void leaveMethod() {
-
-        try {
-
-            if (log.isTraceEnabled()) {
-
-                log.entering(LEAVE_METHOD_METHOD_NAME_WITH_DESCRIPTOR);
-            }
-
-            getProfiler().leaveMethodImpl(true, false, null);
-
-            log.exiting(LEAVE_METHOD_METHOD_NAME_WITH_DESCRIPTOR);
-
-        } catch (Throwable e) {
-            e.printStackTrace();
-            log.error(LEAVE_METHOD_METHOD_NAME_WITH_DESCRIPTOR, e);
-        } finally {
-            log.exiting(LEAVE_METHOD_METHOD_NAME_WITH_DESCRIPTOR);
-        }
-
-    }
-
-    public static final String LEAVE_METHOD_RETURN_VALUE_METHOD_NAME =
-            "leaveMethodReturnValue";
-    public static final String LEAVE_METHOD_RETURN_VALUE_METHOD_DESCRIPTOR =
-            "(Ljava/lang/Object;)V";
-    public static final String LEAVE_METHOD_RETURN_VALUE_METHOD_NAME_WITH_DESCRIPTOR =
-            LEAVE_METHOD_RETURN_VALUE_METHOD_NAME + LEAVE_METHOD_RETURN_VALUE_METHOD_DESCRIPTOR;
-
-    public static void leaveMethodReturnValue(Object returnValue) {
-
-        try {
-
-            if (log.isTraceEnabled()) {
-
-                log.entering(
-                        LEAVE_METHOD_RETURN_VALUE_METHOD_NAME_WITH_DESCRIPTOR,
-                        returnValue
-                );
-            }
-
-            getProfiler().leaveMethodImpl(false, false, returnValue);
-
-            log.exiting(LEAVE_METHOD_RETURN_VALUE_METHOD_NAME_WITH_DESCRIPTOR);
-
-        } catch (Throwable e) {
-            log.error(LEAVE_METHOD_RETURN_VALUE_METHOD_NAME_WITH_DESCRIPTOR, e);
-        } finally {
-            log.exiting(LEAVE_METHOD_RETURN_VALUE_METHOD_NAME_WITH_DESCRIPTOR);
-        }
-
-    }
-
-    public static final String LEAVE_METHOD_THROW_EXCEPTION_METHOD_NAME =
-            "leaveMethodThrowException";
-    public static final String LEAVE_METHOD_THROW_EXCEPTION_METHOD_DESCRIPTOR =
-            "(Ljava/lang/Throwable;)V";
-    public static final String LEAVE_METHOD_THROW_EXCEPTION_METHOD_NAME_WITH_DESCRIPTOR =
-            LEAVE_METHOD_THROW_EXCEPTION_METHOD_NAME + LEAVE_METHOD_THROW_EXCEPTION_METHOD_DESCRIPTOR;
-
-    public static void leaveMethodThrowException(Throwable throwable) {
-
-        try {
-
-            if (log.isTraceEnabled()) {
-
-                log.entering(
-                        LEAVE_METHOD_THROW_EXCEPTION_METHOD_NAME_WITH_DESCRIPTOR,
-                        throwable
-                );
-            }
-
-            getProfiler().leaveMethodImpl(false, true, throwable);
-
-            log.exiting(LEAVE_METHOD_THROW_EXCEPTION_METHOD_NAME_WITH_DESCRIPTOR);
-
-        } catch (Throwable e) {
-            log.error(LEAVE_METHOD_THROW_EXCEPTION_METHOD_NAME_WITH_DESCRIPTOR, e);
-        } finally {
-            log.exiting(LEAVE_METHOD_THROW_EXCEPTION_METHOD_NAME_WITH_DESCRIPTOR);
-        }
-
-    }
-
-    public static final String DESCRIBE_CLASS_METHOD_NAME =
-            "describeClass";
-    public static final String DESCRIBE_CLASS_METHOD_DESCRIPTOR =
-            "(J)V";
-    public static final String DESCRIBE_CLASS_METHOD_NAME_WITH_DESCRIPTOR =
-            DESCRIBE_CLASS_METHOD_NAME + DESCRIBE_CLASS_METHOD_DESCRIPTOR;
-
-    public static void describeClass(
-            final long methodId) {
-
-        Class clazz = new CurrentClassGetter().getCallerClass(1);
-
-        try {
-
-            if (log.isTraceEnabled()) {
-
-                log.entering(
-                        DESCRIBE_CLASS_METHOD_NAME_WITH_DESCRIPTOR,
-                        methodId,
-                        clazz
-                );
-            }
-
-            getProfiler().describeClassImpl(methodId, clazz);
-
-            log.exiting(DESCRIBE_CLASS_METHOD_NAME_WITH_DESCRIPTOR);
-
-        } catch (Throwable e) {
-            log.error(DESCRIBE_CLASS_METHOD_NAME_WITH_DESCRIPTOR, e);
-        } finally {
-            log.exiting(DESCRIBE_CLASS_METHOD_NAME_WITH_DESCRIPTOR);
-        }
-
-    }
 
     public void start() throws NetworkServerException {
 
@@ -315,17 +109,29 @@ public abstract class Profiler {
         stopServer();
     }
 
-    protected abstract void describeClassImpl(long methodId, Class clazz);
+    public static void describeClass(long methodId, Class clazz) {
+        getProfiler().describeClassImpl(methodId, clazz);
+    }
 
-    public abstract void describeRedefinableClass(long classId, Class clazz);
+    public static void enterConstructor(long methodId, Object that) {
+        getProfiler().enterConstructorImpl(methodId, that);
+    }
 
-    protected abstract void enterMethodImpl(long methodId, Object object, Object[] arguments);
+    protected void describeClassImpl(long methodId, Class clazz) {};
 
-    protected abstract void enterConstructorImpl(long methodId, Object object, Object[] arguments);
+    public void enterMethodImpl(long methodId) {};
 
-    protected abstract void preEnterConstructorImpl(long methodId);
+    protected void enterConstructorImpl(long methodId, Object that) {};
 
-    protected abstract void leaveMethodImpl(boolean isVoid, boolean isThrowsException, Object result);
+    public static void leaveMethod() {
+        getProfiler().leaveMethodImpl(null);
+    }
+
+    public static void leaveMethod(Throwable e) {
+        getProfiler().leaveMethodImpl(e);
+    }
+
+    public void leaveMethodImpl(Throwable e) {};
 
     public abstract void sendMessage(Message registerMethodMessage);
 

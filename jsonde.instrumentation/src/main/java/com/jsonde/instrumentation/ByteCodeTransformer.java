@@ -4,79 +4,108 @@ import com.jsonde.util.ClassUtils;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
+import org.objectweb.asm.util.ASMifier;
+import org.objectweb.asm.util.TraceClassVisitor;
 
+import java.io.PrintWriter;
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;
 import java.security.ProtectionDomain;
 
 public class ByteCodeTransformer implements ClassFileTransformer {
 
-    public byte[] transform(ClassLoader loader, String className, Class<?> classBeingRedefined, ProtectionDomain protectionDomain, byte[] classfileBuffer) throws IllegalClassFormatException {
+    private final static String transformerPackage = ByteCodeTransformer.class.getPackage().getName();
+
+    private final TransformerCallback callback;
+
+    public ByteCodeTransformer(TransformerCallback configuration) {
+        this.callback = configuration;
+    }
+
+    public ByteCodeTransformer() {
+        this(new TransformerCallback());
+    }
+
+    public byte[] transform(ClassLoader loader,
+                            String className,
+                            Class<?> classBeingRedefined,
+                            ProtectionDomain protectionDomain,
+                            byte[] classfileBuffer) throws IllegalClassFormatException {
 
         className = ClassUtils.getFullyQualifiedName(className);
 
-        if (Object.class.getName().equals(className))
-            throw new RuntimeException();
 
-        if (
-                className.startsWith("com.jsonde") &&
-                        !className.contains(".samples.")) {
+        if (className.startsWith(transformerPackage)&& (!className.startsWith("com.jsonde.instrumentation.samples"))) {
             return classfileBuffer;
         }
 
-        /*if (
-                className.startsWith("sun.reflect")) {
+        if (callback.shouldTransformClass(loader, className, classBeingRedefined, protectionDomain)) {
+            return doTransform(loader, className, classBeingRedefined, protectionDomain, classfileBuffer);
+        } else {
             return classfileBuffer;
-        }*/
-
-        try {
-            return transform(classfileBuffer, true, loader, classBeingRedefined);
-        } catch (SkipClassException e) {
-            e.printStackTrace();
-            return classfileBuffer;
-        } catch (ByteCodeTransformException e) {
-            e.printStackTrace();
-            throw new IllegalClassFormatException(e.getMessage());
         }
-    }
-
-    public byte[] transform(byte[] originalBytes, boolean instrumentClass, ClassLoader loader, Class<?> classBeingRedefined) throws ByteCodeTransformException {
-
-        return transform(
-                originalBytes,
-                0,
-                originalBytes.length,
-                instrumentClass,
-                loader,
-                classBeingRedefined);
 
     }
 
-    public byte[] transform(byte[] originalBytes, int offset, int length, boolean instrumentClass, ClassLoader classLoader, Class<?> classBeingRedefined) throws ByteCodeTransformException {
+    private byte[] doTransform(
+            final ClassLoader loader,
+            String className,
+            Class<?> classBeingRedefined,
+            ProtectionDomain protectionDomain,
+            byte[] classfileBuffer) throws IllegalClassFormatException {
 
-        try {
+        ClassReader classReader = new ClassReader(classfileBuffer, 0, classfileBuffer.length);
 
-            ClassReader classReader = new ClassReader(originalBytes, offset, length);
+        ClassWriter classWriter = new ClassWriter(classReader, ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES) {
 
-            ClassWriter classWriter = new ClassWriter(classReader, ClassWriter.COMPUTE_MAXS | ClassWriter.COMPUTE_FRAMES);
+            @Override
+            protected String getCommonSuperClass(String type1, String type2) {
+                Class<?> c, d;
+                ClassLoader classLoader = getClass().getClassLoader();
+                try {
+                    c = Class.forName(type1.replace('/', '.'), false, classLoader);
+                } catch (ClassNotFoundException e) {
+                    try {
+                        c = Class.forName(type1.replace('/', '.'), false, loader);
+                    } catch (ClassNotFoundException e2) {
+                        throw new RuntimeException(e.toString());
+                    }
+                }
+                try {
+                    d = Class.forName(type2.replace('/', '.'), false, classLoader);
+                } catch (ClassNotFoundException e) {
+                    try {
+                        d = Class.forName(type2.replace('/', '.'), false, loader);
+                    } catch (ClassNotFoundException e2) {
+                        throw new RuntimeException(e.toString());
+                    }
+                }
+                if (c.isAssignableFrom(d)) {
+                    return type1;
+                }
+                if (d.isAssignableFrom(c)) {
+                    return type2;
+                }
+                if (c.isInterface() || d.isInterface()) {
+                    return "java/lang/Object";
+                } else {
+                    do {
+                        c = c.getSuperclass();
+                    } while (!c.isAssignableFrom(d));
+                    return c.getName().replace('.', '/');
+                }
+            }
+        };
 
-            ClassVisitor classVisitor;
-            classVisitor = new JSondeClassTransformer(classWriter, instrumentClass, classLoader, classBeingRedefined);
+        ClassVisitor classVisitor;
+        classVisitor = new ClassTransformer(callback, classWriter, loader, className, classBeingRedefined, protectionDomain);
 
-            classReader.accept(classVisitor, ClassReader.EXPAND_FRAMES);
+        classReader.accept(classVisitor, ClassReader.EXPAND_FRAMES);
+        /*classReader.accept(new TraceClassVisitor(null, new ASMifier(), new PrintWriter(
+                System.out)), 0);*/
 
 
-            final byte[] bytes = classWriter.toByteArray();
-            /*dumpBytes(originalBytes);
-            dumpBytes(bytes);*/
-
-            return bytes;
-
-        } catch (SkipClassException e) {
-            e.printStackTrace();
-            return originalBytes;
-            //throw new ByteCodeTransformException(e); // todo fix
-        }
+        return classWriter.toByteArray();
 
     }
 

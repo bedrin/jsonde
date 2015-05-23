@@ -33,6 +33,14 @@ public class ObjectIdGenerator<T> {
 
     }
 
+    public synchronized boolean hasId(T object) throws ObjectIsAbsentException {
+
+        ObjectWrapper<T> objectWrapper = wrap(object);
+
+        return objectIds.containsKey(objectWrapper);
+
+    }
+
     @SuppressWarnings("unchecked")
     private ObjectWrapper<T> wrap(T object) {
         if (object instanceof ObjectWrapper) {

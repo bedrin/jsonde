@@ -1,12 +1,13 @@
 package com.jsonde.instrumentation.classloader;
 
-import com.jsonde.instrumentation.ByteCodeTransformException;
 import com.jsonde.instrumentation.ByteCodeTransformer;
+import com.jsonde.instrumentation.TransformerCallback;
 import com.jsonde.util.ClassUtils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.instrument.IllegalClassFormatException;
 
 public class JSondeClassLoader extends ClassLoader {
 
@@ -51,8 +52,8 @@ public class JSondeClassLoader extends ClassLoader {
         try {
             byteCodeInputStream = parentClassLoader.getResourceAsStream(
                     ClassUtils.convertClassNameToResourceName(name));
-            transformedByteArray = transform(byteCodeInputStream, true);
-        } catch (ByteCodeTransformException e) {
+            transformedByteArray = transform(name, byteCodeInputStream, true);
+        } catch (IllegalClassFormatException e) {
             throw new ClassNotFoundException("Error while instrumenting class " + name, e);
         } finally {
             if (null != byteCodeInputStream) {
@@ -79,7 +80,7 @@ public class JSondeClassLoader extends ClassLoader {
 
     }
 
-    public byte[] transform(InputStream inputStream, boolean instrumentClass) throws ByteCodeTransformException {
+    public byte[] transform(String name, InputStream inputStream, boolean instrumentClass) throws IllegalClassFormatException {
 
         ByteArrayOutputStream originalByteArrayOutputStream = new ByteArrayOutputStream();
 
@@ -89,12 +90,12 @@ public class JSondeClassLoader extends ClassLoader {
                 originalByteArrayOutputStream.write(inputStream.read());
             }
 
-            ByteCodeTransformer byteCodeTransformer = new ByteCodeTransformer();
+            ByteCodeTransformer byteCodeTransformer = new ByteCodeTransformer(new TransformerCallback());
 
-            return byteCodeTransformer.transform(originalByteArrayOutputStream.toByteArray(), instrumentClass, this, null);
+            return byteCodeTransformer.transform(this, name, null, null, originalByteArrayOutputStream.toByteArray());
 
         } catch (IOException e) {
-            throw new ByteCodeTransformException(e);
+            throw new IllegalClassFormatException(e.getMessage());
         } finally {
             try {
                 originalByteArrayOutputStream.close();

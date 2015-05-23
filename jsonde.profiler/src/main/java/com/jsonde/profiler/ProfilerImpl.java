@@ -28,10 +28,7 @@ import java.net.URL;
 import java.security.CodeSource;
 import java.security.ProtectionDomain;
 import java.util.*;
-import java.util.concurrent.Executor;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 import java.util.concurrent.atomic.AtomicLong;
 
 public class ProfilerImpl extends Profiler implements MessageListener {
@@ -146,25 +143,21 @@ public class ProfilerImpl extends Profiler implements MessageListener {
     }
 
     @Override
-    protected void enterMethodImpl(long methodId, Object object, Object[] arguments) {
-        threadLocalProfiler.get().enterMethodImpl(methodId, object, arguments);
+    public void enterMethodImpl(long methodId) {
+        threadLocalProfiler.get().enterMethodImpl(methodId);
+    }
+
+
+    @Override
+    protected void enterConstructorImpl(long methodId, Object that) {
+        //threadLocalProfiler.get().enterConstructorImpl(methodId, that);
+        long objectSize = instrumentation.getObjectSize(that);
+        heapAnalyzer.createObject(that, methodId, objectSize);
     }
 
     @Override
-    protected void enterConstructorImpl(long methodId, Object object, Object[] arguments) {
-        threadLocalProfiler.get().enterConstructorImpl(methodId, object, arguments);
-        long objectSize = instrumentation.getObjectSize(object);
-        heapAnalyzer.createObject(object, methodId, objectSize);
-    }
-
-    @Override
-    protected void preEnterConstructorImpl(long methodId) {
-        threadLocalProfiler.get().preEnterConstructorImpl(methodId);
-    }
-
-    @Override
-    protected void leaveMethodImpl(boolean isVoid, boolean isThrowsException, Object result) {
-        threadLocalProfiler.get().leaveMethodImpl(isVoid, isThrowsException, result);
+    public void leaveMethodImpl(Throwable e) {
+        threadLocalProfiler.get().leaveMethodImpl(e);
     }
 
     @Override
@@ -297,47 +290,34 @@ public class ProfilerImpl extends Profiler implements MessageListener {
 
     }
 
+    // TODO: is it really synchronization?
+    private Set<Long> describedClassIds = Collections.newSetFromMap(new ConcurrentHashMap<Long, Boolean>());
+
     @Override
     protected void describeClassImpl(long classId, Class clazz) {
 
-        DescribeClassMessage describeClassMessage = new DescribeClassMessage(classId, false);
+        if (!describedClassIds.contains(classId)) {
 
-        describeClassMessage.setClassLoaderId(
-                classLoaderIdGenerator.getId(clazz.getClassLoader())
-        );
+            describedClassIds.add(classId);
 
-        ProtectionDomain protectionDomain = clazz.getProtectionDomain();
-        if (null != protectionDomain) {
-            CodeSource codeSource = protectionDomain.getCodeSource();
-            if (null != codeSource) {
-                URL codeLocation = codeSource.getLocation();
-                describeClassMessage.setCodeLocation(codeLocation.toExternalForm());
+            DescribeClassMessage describeClassMessage = new DescribeClassMessage(classId, false);
+
+            describeClassMessage.setClassLoaderId(
+                    classLoaderIdGenerator.getId(clazz.getClassLoader())
+            );
+
+            ProtectionDomain protectionDomain = clazz.getProtectionDomain();
+            if (null != protectionDomain) {
+                CodeSource codeSource = protectionDomain.getCodeSource();
+                if (null != codeSource) {
+                    URL codeLocation = codeSource.getLocation();
+                    describeClassMessage.setCodeLocation(codeLocation.toExternalForm());
+                }
             }
+
+            networkServer.sendMessage(describeClassMessage);
+
         }
-
-        networkServer.sendMessage(describeClassMessage);
-
-    }
-
-    @Override
-    public void describeRedefinableClass(long classId, Class clazz) {
-
-        DescribeClassMessage describeClassMessage = new DescribeClassMessage(classId, true);
-
-        describeClassMessage.setClassLoaderId(
-                classLoaderIdGenerator.getId(clazz.getClassLoader())
-        );
-
-        ProtectionDomain protectionDomain = clazz.getProtectionDomain();
-        if (null != protectionDomain) {
-            CodeSource codeSource = protectionDomain.getCodeSource();
-            if (null != codeSource) {
-                URL codeLocation = codeSource.getLocation();
-                describeClassMessage.setCodeLocation(codeLocation.toExternalForm());
-            }
-        }
-
-        networkServer.sendMessage(describeClassMessage);
 
     }
 

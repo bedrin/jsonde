@@ -20,12 +20,10 @@ public class TestInstrumentSingleMethod extends TestCase {
 
         simpleClazz.newInstance();
 
-        assertEquals(1, invocationCountingProfiler.enterConstructorImplCounter);
-        assertEquals(0, invocationCountingProfiler.enterMethodImplCounter);
-        assertEquals(1, invocationCountingProfiler.preEnterConstructorImplCounter);
-        assertEquals(1, invocationCountingProfiler.leaveMethodImplCounter);
+        assertEquals(2, invocationCountingProfiler.enterMethodImplCounter);
+        assertEquals(2, invocationCountingProfiler.leaveMethodImplCounter);
         assertEquals(1, invocationCountingProfiler.registerClassCounter);
-        assertEquals(2, invocationCountingProfiler.registerMethodCounter);
+        assertEquals(3, invocationCountingProfiler.registerMethodCounter);
 
     }
 

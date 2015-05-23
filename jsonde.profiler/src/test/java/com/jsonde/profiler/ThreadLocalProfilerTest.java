@@ -28,24 +28,24 @@ public class ThreadLocalProfilerTest extends TestCase {
 
         ThreadLocalProfiler tlp = new ThreadLocalProfiler(testProfiler);
 
-        tlp.enterMethodImpl(1, null, null);
-            tlp.enterMethodImpl(2, null, null);
+        tlp.enterMethodImpl(1);
+            tlp.enterMethodImpl(2);
 
-                tlp.enterMethodImpl(3, null, null);
-                tlp.leaveMethodImpl(false, false, null);
+                tlp.enterMethodImpl(3);
+                tlp.leaveMethodImpl(null);
 
-            tlp.leaveMethodImpl(false, false, null);
+            tlp.leaveMethodImpl(null);
 
-            tlp.enterMethodImpl(2, null, null);
-            tlp.leaveMethodImpl(false, false, null);
+            tlp.enterMethodImpl(2);
+            tlp.leaveMethodImpl(null);
 
-            tlp.enterMethodImpl(2, null, null);
-            tlp.leaveMethodImpl(false, false, null);
+            tlp.enterMethodImpl(2);
+            tlp.leaveMethodImpl(null);
 
-            tlp.enterMethodImpl(2, null, null);
-            tlp.leaveMethodImpl(false, false, null);
+            tlp.enterMethodImpl(2);
+            tlp.leaveMethodImpl(null);
 
-        tlp.leaveMethodImpl(false, false, null);
+        tlp.leaveMethodImpl(null);
 
         assertEquals(1, testProfiler.processCalled);
         assertEquals(6, testProfiler.methodCallDtos.size());

@@ -28,34 +28,7 @@ public class ThreadLocalProfiler {
     private MethodCallSummaryDto contextMethodCallSummary; // todo: find out why some method ids are missing?
     private MethodCallSummaryDto rootContextMethodCallSummary;
 
-    protected void preEnterConstructorImpl(long methodId) {
-        enterMethodImpl(methodId, null, null);
-    }
-
-    protected void enterConstructorImpl(long methodId, Object object, Object[] arguments) {
-        if (isProfilerCode) return;
-
-        try {
-
-            isProfilerCode = true;
-
-            MethodCallDto contextMethodCallDto = methodCallsQueue.element();
-
-            if (methodId == contextMethodCallDto.methodId) {
-                if (null != object) {
-                    contextMethodCallDto.actualClassId =
-                            profiler.generateClassIdAndRegisterIfAbsent(object.getClass());
-                    contextMethodCallDto.flags |=
-                            1 << MethodCallDto.ACTUAL_CLASS_ID_SET_FLAG;
-                }
-            }
-
-        } finally {
-            isProfilerCode = false;
-        }
-    }
-
-    protected void enterMethodImpl(long methodId, Object object, Object[] arguments) {
+    protected void enterMethodImpl(long methodId) {
 
         if (isProfilerCode) return;
 
@@ -70,16 +43,6 @@ public class ThreadLocalProfiler {
             currentMethodCallDto.methodCallId = profiler.generateMethodCallId();
             currentMethodCallDto.methodId = methodId;
             currentMethodCallDto.executionTime = System.currentTimeMillis();
-
-            if (null != object) {
-                Class clazz = object.getClass();
-
-                long classId = profiler.generateClassIdAndRegisterIfAbsent(clazz);
-
-                currentMethodCallDto.actualClassId = classId;
-                currentMethodCallDto.flags |=
-                        1 << MethodCallDto.ACTUAL_CLASS_ID_SET_FLAG;
-            }
 
             if (level > 1) {
                 currentMethodCallDto.callerId = methodCallsQueue.element().methodCallId;
@@ -124,7 +87,7 @@ public class ThreadLocalProfiler {
 
     }
 
-    protected void leaveMethodImpl(boolean isVoid, boolean isThrowsException, Object result) {
+    protected void leaveMethodImpl(Throwable e) {
 
         if (isProfilerCode) return;
 
@@ -141,10 +104,10 @@ public class ThreadLocalProfiler {
 
             contextMethodCallDto.executionTime = System.currentTimeMillis() - contextMethodCallDto.executionTime;
 
-            if (!isVoid) contextMethodCallDto.flags |=
-                    1 << MethodCallDto.RETURN_VALUE_FLAG;
-
-            if (isThrowsException) contextMethodCallDto.flags |=
+//            if (!isVoid) contextMethodCallDto.flags |=
+//                    1 << MethodCallDto.RETURN_VALUE_FLAG;
+//
+            if (null != e) contextMethodCallDto.flags |=
                     1 << MethodCallDto.THROW_EXCEPTION_FLAG;
 
             finishedMethodCalls.add(contextMethodCallDto);
@@ -152,7 +115,7 @@ public class ThreadLocalProfiler {
             {
                 // Begin cpu profiler stuff
 
-                if (isThrowsException)
+                if (null != e)
                     contextMethodCallSummary.exceptionCount++;
 
                 contextMethodCallSummary.executionTime +=

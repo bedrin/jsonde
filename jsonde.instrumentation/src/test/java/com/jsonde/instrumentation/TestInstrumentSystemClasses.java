@@ -25,12 +25,10 @@ public class TestInstrumentSystemClasses extends TestCase {
 
         currentThread.setContextClassLoader(oldClassLoader);
 
-        assertNotSame(0, invocationCountingProfiler.enterMethodImplCounter);
-        assertNotSame(0, invocationCountingProfiler.enterConstructorImplCounter);
-        assertNotSame(0, invocationCountingProfiler.preEnterConstructorImplCounter);
-        assertNotSame(0, invocationCountingProfiler.leaveMethodImplCounter);
-        assertNotSame(0, invocationCountingProfiler.registerClassCounter);
-        assertNotSame(0, invocationCountingProfiler.registerMethodCounter);
+        assertTrue(invocationCountingProfiler.enterMethodImplCounter > 0);
+        assertTrue(invocationCountingProfiler.registerMethodCounter > 0);
+        assertTrue(invocationCountingProfiler.leaveMethodImplCounter > 0);
+        assertTrue(invocationCountingProfiler.registerClassCounter > 0);
 
     }
 }

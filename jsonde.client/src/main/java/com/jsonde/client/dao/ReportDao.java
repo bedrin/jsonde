@@ -29,6 +29,24 @@ public class ReportDao extends AbstractDao {
         try {
             connection = connection();
 
+            {
+                PreparedStatement ps = connection.prepareStatement("select * from codesource");
+                ps.execute();
+                ResultSet rs = ps.getResultSet();
+                while (rs.next()) {
+                    System.out.println(rs);
+                }
+            }
+
+            {
+                PreparedStatement ps = connection.prepareStatement("select * from clazz");
+                ps.execute();
+                ResultSet rs = ps.getResultSet();
+                while (rs.next()) {
+                    System.out.println(rs);
+                }
+            }
+
             statement = connection.prepareStatement(
                     "select distinct callerCodeSource.id, calleeCodeSource.id\n" +
                             "\n" +

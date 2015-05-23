@@ -23,24 +23,13 @@ public class InvocationCountingProfiler extends Profiler {
     public int registerMethodCounter;
     public int registerClassCounter;
 
-    protected void describeClassImpl(long classId, Class clazz) {
-        describeClassImplCounter++;
-    }
-
     @Override
-    public void describeRedefinableClass(long classId, Class clazz) {
-        //To change body of implemented methods use File | Settings | File Templates.
-    }
-
-    protected void enterMethodImpl(long methodId, Object object, Object[] arguments) {
+    public void enterMethodImpl(long methodId) {
         enterMethodImplCounter++;
     }
 
-    protected void preEnterConstructorImpl(long methodId) {
-        preEnterConstructorImplCounter++;
-    }
-
-    protected void leaveMethodImpl(boolean isVoid, boolean isThrowsException, Object result) {
+    @Override
+    public void leaveMethodImpl(Throwable e) {
         leaveMethodImplCounter++;
     }
 
