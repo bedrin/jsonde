@@ -3,10 +3,11 @@ package com.jsonde.instrumentation;
 import com.jsonde.instrumentation.classloader.JSondeClassLoader;
 import com.jsonde.instrumentation.profiler.InvocationCountingProfiler;
 import com.jsonde.instrumentation.samples.SimpleClass;
+import com.jsonde.instrumentation.samples.XMLString;
 import com.jsonde.profiler.Profiler;
 import junit.framework.TestCase;
 
-public class TestInstrumentSingleMethod extends TestCase {
+public class TestInstrumentXMLString extends TestCase {
 
     public void testInstrumentSingleMethod() throws Exception {
 
@@ -16,18 +17,14 @@ public class TestInstrumentSingleMethod extends TestCase {
 
         ClassLoader transformingClassLoader = new JSondeClassLoader();
 
-        Class simpleClazz = transformingClassLoader.loadClass(SimpleClass.class.getName());
+        Class simpleClazz = transformingClassLoader.loadClass(XMLString.class.getName());
 
         Object o = simpleClazz.newInstance();
 
-        try {
-            simpleClazz.getMethod("method").invoke(o);
-        } catch (Exception e) {}
-
-        assertEquals(3, invocationCountingProfiler.enterMethodImplCounter);
-        assertEquals(3, invocationCountingProfiler.leaveMethodImplCounter);
+        assertEquals(1, invocationCountingProfiler.enterMethodImplCounter);
+        assertEquals(1, invocationCountingProfiler.leaveMethodImplCounter);
         assertEquals(1, invocationCountingProfiler.registerClassCounter);
-        assertEquals(3, invocationCountingProfiler.registerMethodCounter);
+        assertEquals(9, invocationCountingProfiler.registerMethodCounter);
 
     }
 

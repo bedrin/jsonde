@@ -11,7 +11,7 @@ public class SimpleClass {
     }
 
     public void method() {
-
+        throw new RuntimeException();
     }
 
 }

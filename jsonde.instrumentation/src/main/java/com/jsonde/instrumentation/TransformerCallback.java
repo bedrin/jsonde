@@ -80,6 +80,17 @@ public class TransformerCallback {
         }
     }
 
+    public Method getPreEnterConstructor() {
+        try {
+            return Profiler.class.getMethod("preEnterConstructor", long.class);
+        } catch (NoSuchMethodException e) {
+            for (Method m : Profiler.class.getDeclaredMethods()) {
+                System.out.println(m);
+            }
+            throw new RuntimeException(e);
+        }
+    }
+
     public Method getDescribeClass() {
         try {
             return Profiler.class.getMethod("describeClass", long.class, Class.class);

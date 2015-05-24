@@ -4,10 +4,7 @@ import com.jsonde.util.ClassUtils;
 import org.objectweb.asm.ClassReader;
 import org.objectweb.asm.ClassVisitor;
 import org.objectweb.asm.ClassWriter;
-import org.objectweb.asm.util.ASMifier;
-import org.objectweb.asm.util.TraceClassVisitor;
 
-import java.io.PrintWriter;
 import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.IllegalClassFormatException;
 import java.security.ProtectionDomain;
@@ -101,11 +98,22 @@ public class ByteCodeTransformer implements ClassFileTransformer {
         classVisitor = new ClassTransformer(callback, classWriter, loader, className, classBeingRedefined, protectionDomain);
 
         classReader.accept(classVisitor, ClassReader.EXPAND_FRAMES);
+
+        byte[] bytes = classWriter.toByteArray();
         /*classReader.accept(new TraceClassVisitor(null, new ASMifier(), new PrintWriter(
                 System.out)), 0);*/
 
+        /*
 
-        return classWriter.toByteArray();
+        StringWriter sw = new StringWriter();
+        PrintWriter pw = new PrintWriter(sw);
+        CheckClassAdapter.verify(new ClassReader(bytes), false, pw);
+        if (!sw.toString().isEmpty()) {
+            System.out.println(sw.toString());
+        }*/
+
+
+        return bytes;
 
     }
 

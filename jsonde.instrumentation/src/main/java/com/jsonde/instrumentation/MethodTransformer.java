@@ -46,6 +46,25 @@ public class MethodTransformer extends AdviceAdapter {
     private final Label startFinallyLabel = new Label();
 
     @Override
+    public void visitCode() {
+        super.visitCode();
+
+        boolean isConstructor = name.equals(ClassUtils.CONSTRUCTOR_METHOD_NAME);
+
+        if ((ACC_STATIC & methodAccess) == 0 && isConstructor) {
+            Method enterMethod = callback.getPreEnterConstructor();
+            visitLdcInsn(methodId);
+            visitMethodInsn(
+                    INVOKESTATIC,
+                    ClassUtils.getInternalClassName(enterMethod.getDeclaringClass().getName()),
+                    enterMethod.getName(),
+                    Type.getMethodDescriptor(enterMethod),
+                    false);
+        }
+
+    }
+
+    @Override
     protected void onMethodEnter() {
         visitLabel(startFinallyLabel);
 

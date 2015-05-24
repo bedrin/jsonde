@@ -42,6 +42,10 @@ public abstract class Profiler {
         getProfiler().enterMethodImpl(methodId);
     }
 
+    public static void preEnterConstructor(long methodId) {
+        getProfiler().preEnterConstructorImpl(methodId);
+    }
+
     public static final String ENTER_CONSTRUCTOR_METHOD_NAME =
             "enterConstructor";
     public static final String ENTER_CONSTRUCTOR_METHOD_DESCRIPTOR =
@@ -120,6 +124,7 @@ public abstract class Profiler {
     protected void describeClassImpl(long methodId, Class clazz) {};
 
     public void enterMethodImpl(long methodId) {};
+    public void preEnterConstructorImpl(long methodId) {};
 
     protected void enterConstructorImpl(long methodId, Object that) {};
 
