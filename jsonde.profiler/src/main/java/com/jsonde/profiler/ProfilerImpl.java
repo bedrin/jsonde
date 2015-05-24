@@ -374,8 +374,8 @@ public class ProfilerImpl extends Profiler implements MessageListener {
         redefineClassesExecutor.execute(new Runnable() {
 
             public void run() {
+                Class clazz = null;
                 try {
-                    Class clazz;
 
                     if (null == classLoader) {
                         clazz = ClassLoader.getSystemClassLoader().loadClass(className);
@@ -391,6 +391,9 @@ public class ProfilerImpl extends Profiler implements MessageListener {
 
                     instrumentation.redefineClasses(new ClassDefinition[]{classDefinition});
 
+                } catch (VerifyError e) {
+                    System.err.println("Error while transforming class " + className + " loaded by " + classLoader + " ; class is " + clazz);
+                    e.printStackTrace();
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 } catch (UnmodifiableClassException e) {

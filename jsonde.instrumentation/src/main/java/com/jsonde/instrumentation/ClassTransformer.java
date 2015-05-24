@@ -128,7 +128,7 @@ public class ClassTransformer extends ClassVisitor {
     @Override
     public void visitEnd() {
         if (!staticConstructorExists) {
-            // TODO: does NOT work for redefinition
+            // TODO: check if redefinition is supported
             /*GeneratorAdapter mv = new GeneratorAdapter(
                     super.visitMethod(Opcodes.ACC_STATIC, "<clinit>", "()V", null, null),
                     0, "<clinit>", "()V"

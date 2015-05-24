@@ -31,8 +31,9 @@ public class ByteCodeTransformer implements ClassFileTransformer {
 
         className = ClassUtils.getFullyQualifiedName(className);
 
-
-        if (className.startsWith(transformerPackage)&& (!className.startsWith("com.jsonde.instrumentation.samples"))) {
+        if ((className.startsWith(transformerPackage) && (!className.startsWith("com.jsonde.instrumentation.samples"))) ||
+                className.startsWith("org.objectweb.asm")) {
+            // DO NOT transform objectweb ASM and jSONDE itself !!!11
             return classfileBuffer;
         }
 
@@ -100,6 +101,9 @@ public class ByteCodeTransformer implements ClassFileTransformer {
         classReader.accept(classVisitor, ClassReader.EXPAND_FRAMES);
 
         byte[] bytes = classWriter.toByteArray();
+
+        // Uncomment code below to debug
+
         /*classReader.accept(new TraceClassVisitor(null, new ASMifier(), new PrintWriter(
                 System.out)), 0);*/
 

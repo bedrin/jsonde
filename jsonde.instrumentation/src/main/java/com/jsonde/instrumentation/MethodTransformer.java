@@ -71,18 +71,20 @@ public class MethodTransformer extends AdviceAdapter {
         boolean isConstructor = name.equals(ClassUtils.CONSTRUCTOR_METHOD_NAME);
         boolean isStaticConstructor = name.equals(ClassUtils.STATIC_CONSTRUCTOR_METHOD_NAME);
 
-        // todo: now we call this guy for all method but we should think about an improvement:
-        Method describeClassMethod = callback.getDescribeClass();
-        visitLdcInsn(classId);
-        visitLdcInsn(Type.getType("L" + ClassUtils.getInternalClassName(className) + ";"));
-        visitMethodInsn(
-                INVOKESTATIC,
-                ClassUtils.getInternalClassName(describeClassMethod.getDeclaringClass().getName()),
-                describeClassMethod.getName(),
-                Type.getMethodDescriptor(describeClassMethod),
-                false);
+        if ((ACC_STATIC & methodAccess) != 0) {
+            Method describeClassMethod = callback.getDescribeClass();
+            visitLdcInsn(classId);
+            visitLdcInsn(Type.getType("L" + ClassUtils.getInternalClassName(className) + ";"));
+            visitMethodInsn(
+                    INVOKESTATIC,
+                    ClassUtils.getInternalClassName(describeClassMethod.getDeclaringClass().getName()),
+                    describeClassMethod.getName(),
+                    Type.getMethodDescriptor(describeClassMethod),
+                    false);
+        }
 
         if ((ACC_STATIC & methodAccess) != 0 && isStaticConstructor) {
+            // TODO: if redefinition is supported, we should use code below
             /*Method describeClassMethod = callback.getDescribeClass();
             visitLdcInsn(classId);
             visitLdcInsn(Type.getType("L" + ClassUtils.getInternalClassName(className) + ";"));
@@ -112,6 +114,8 @@ public class MethodTransformer extends AdviceAdapter {
                 enterMethod.getName(),
                 Type.getMethodDescriptor(enterMethod),
                 false);
+
+        // TODO: insert custom logic like handling SQL queries or HTTP requests here
 
     }
 
