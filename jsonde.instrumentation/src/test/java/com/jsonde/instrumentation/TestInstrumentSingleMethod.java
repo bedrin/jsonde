@@ -18,10 +18,14 @@ public class TestInstrumentSingleMethod extends TestCase {
 
         Class simpleClazz = transformingClassLoader.loadClass(SimpleClass.class.getName());
 
-        simpleClazz.newInstance();
+        Object o = simpleClazz.newInstance();
 
-        assertEquals(2, invocationCountingProfiler.enterMethodImplCounter);
-        assertEquals(2, invocationCountingProfiler.leaveMethodImplCounter);
+        try {
+            simpleClazz.getMethod("method").invoke(o);
+        } catch (Exception e) {}
+
+        assertEquals(3, invocationCountingProfiler.enterMethodImplCounter);
+        assertEquals(3, invocationCountingProfiler.leaveMethodImplCounter);
         assertEquals(1, invocationCountingProfiler.registerClassCounter);
         assertEquals(3, invocationCountingProfiler.registerMethodCounter);
 

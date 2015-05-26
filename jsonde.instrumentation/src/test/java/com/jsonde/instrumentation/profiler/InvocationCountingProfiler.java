@@ -59,8 +59,13 @@ public class InvocationCountingProfiler extends Profiler {
         //To change body of implemented methods use File | Settings | File Templates.
     }
 
-    protected void enterConstructorImpl(long methodId, Object object, Object[] arguments) {
+    protected void enterConstructorImpl(long methodId, Object object) {
         enterConstructorImplCounter++;
+    }
+
+    @Override
+    public void preEnterConstructorImpl(long methodId) {
+        preEnterConstructorImplCounter++;
     }
 
     public void redefineClass(byte[] bytecode, String className, ClassLoader classLoader) {
