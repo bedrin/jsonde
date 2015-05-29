@@ -19,7 +19,7 @@ Download
 [![Get automatic notifications about new "jSonde" versions](https://www.bintray.com/docs/images/bintray_badge_color.png) ](https://bintray.com/bedrin/github/jsonde/view?source=watch)
 - [jsonde-1.1.0-installer.exe](https://github.com/bedrin/jsonde/releases/download/1.1.0/jsonde-1.1.0-installer.exe) ([bintray mirror](https://bintray.com/artifact/download/bedrin/github/jsonde-1.1.0-installer.exe))
 - [jsonde-1.1.0-installer.jar](https://github.com/bedrin/jsonde/releases/download/1.1.0/jsonde-1.1.0-installer.jar) ([bintray mirror](https://bintray.com/artifact/download/bedrin/github/jsonde-1.1.0-installer.jar))
-- 
+ 
 Manual
 ============
 # Overview
