@@ -14,6 +14,12 @@ jSonde allows you to generate sequence diagrams directly from your application r
 
 ![Sequence Diagram](http://bedrin.github.io/jsonde/sequenceDiagram.png "Sequence Diagram")
 
+Download
+============
+[![Get automatic notifications about new "jSonde" versions](https://www.bintray.com/docs/images/bintray_badge_color.png) ](https://bintray.com/bedrin/github/jsonde/view?source=watch)
+- [jsonde-1.1.0-installer.exe](https://github.com/bedrin/jsonde/releases/download/1.1.0/jsonde-1.1.0-installer.exe) ([bintray mirror](https://bintray.com/artifact/download/bedrin/github/jsonde-1.1.0-installer.exe))
+- [jsonde-1.1.0-installer.jar](https://github.com/bedrin/jsonde/releases/download/1.1.0/jsonde-1.1.0-installer.jar) ([bintray mirror](https://bintray.com/artifact/download/bedrin/github/jsonde-1.1.0-installer.jar))
+- 
 Manual
 ============
 # Overview
@@ -191,3 +197,8 @@ Heap analyzer allows you to browse the snapshot of java memory heap and analyze 
 Building
 ============
 jSonde is built using JDK 1.5+ and Maven 3+ - just checkout the project and type `mvn install`
+
+Get Help
+============
+- [StackOverflow](http://stackoverflow.com/questions/tagged/jtracert?sort=newest)
+- [Gitter.im](https://gitter.im/bedrin/jsonde)
